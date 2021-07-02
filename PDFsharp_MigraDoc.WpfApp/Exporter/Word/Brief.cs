@@ -2,13 +2,30 @@
 
 namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
 {
+    /// <summary>
+    /// Die Klasse ist eine Ableitung von <see cref="Word.ExporterBase{T}"/>. 
+    /// Sie stellt einen Exporter für <see cref="ViewModels.Documents.Brief"/> bereit
+    /// </summary>
     public class Brief : ExporterBase<ViewModels.Documents.Brief>
     {
+        /// <summary>
+        /// Erzeugt einen neuen <see cref="Exporter.Word.Brief">Exporter</see>
+        /// </summary>
+        /// <param name="datasource">Ein <see cref="ViewModels.Documents.Brief">ViewModel</see>
+        /// mit den Daten für den Export.<br/>Der Parameter kann <see cref="null"/> 
+        /// sein.<br/>Er ist i.d.R. immer null, wenn mehrere Dokumente erzeugt werden.<br/>
+        /// Ein neues Dokument wird durch den Aufruf von <see cref="Exporter.ExporterBase{T}.DoExport"/> 
+        /// erzeugt.<br/>Für jedes neue Dokument kann eine neue <see cref="Exporter.ExporterBase{T}.DataSource">
+        /// Datenquelle</see> zugewiesen werden</param>
         public Brief(ViewModels.Documents.Brief datasource = null) : base(datasource)
         {
         }
 
-        public override void WriteToFormFields()
+        /// <summary>
+        /// Führt den Export der Daten aus dem <see cref="ViewModels.Documents.Brief">ViewModel</see> 
+        /// in ein neu erzeugtes Word-Dokument aus.
+        /// </summary>
+        public override void DoExport()
         {
             object templateFileName = GetTemplatePath(TemplateFileNames.Brief);
             Document document = Application.Documents.Add(ref templateFileName);
@@ -25,6 +42,9 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
             document.FormFields[ref FormFieldNames.Text].Result = DataSource.Text;
         }
 
+        /// <summary>
+        /// Die Namen den Textmarken/Formularfelder 
+        /// </summary>
         private static class FormFieldNames
         {
             public static object AbsName = "AbsName";

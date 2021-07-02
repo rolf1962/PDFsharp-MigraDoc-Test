@@ -5,24 +5,44 @@ using System.Runtime.InteropServices;
 
 namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
 {
-    public abstract class ExporterBase<T> : Exporter.ExporterBase<T>, IDisposable
+    /// <summary>
+    /// Die abstrakte Basisklasse für alle Word-Exporter.
+    /// </summary>
+    /// <typeparam name="T">Die (ViewModel-) Typ mit den zu exportierenden Daten</typeparam>
+    public abstract class ExporterBase<T> : Exporter.ExporterBase<T>, IDisposable where T : class
     {
         private bool disposedValue;
         private bool _visible;
 
-        public ExporterBase(T dataSource) : base(dataSource)
+        /// <summary>
+        /// Erzeugt einen neuen Word-Exporter
+        /// </summary>
+        /// <param name="dataSource">Die <see cref="Exporter.ExporterBase{T}.DataSource">Daten</see> für den Export.</param>
+        public ExporterBase(T dataSource = null) : base(dataSource)
         {
             Application = new Application();
             Visible = false;
         }
 
+        /// <summary>
+        /// Die Instanz von <see cref="Application">MS-Word</see> mit der gearbeitet wird.
+        /// </summary>
         protected Application Application { get; set; }
 
+        /// <summary>
+        /// Gibt den vollständigen Dateipfad einer Vorlage zurück
+        /// </summary>
+        /// <param name="TemplateName"></param>
+        /// <returns></returns>
         public static string GetTemplatePath(string TemplateName)
         {
             return Path.GetFullPath(Path.Combine("WordTemplates", TemplateName));
         }
 
+        /// <summary>
+        /// Zeigt das Anwendungsfenster von <see cref="Application">MS-Word an, 
+        /// blendet es aus oder gibt die aktuelle Sichtbarkeit zurück</see>
+        /// </summary>
         public bool Visible
         {
             get => _visible;
@@ -32,8 +52,7 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
             }
         }
 
-        public abstract void WriteToFormFields();
-
+        #region Implementierung von IDisposable
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -49,7 +68,7 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
                 {
                     if (Marshal.IsComObject(Application))
                     {
-                        foreach(Document document in Application.Documents)
+                        foreach (Document document in Application.Documents)
                         {
                             Marshal.FinalReleaseComObject(document);
                         }
@@ -78,5 +97,6 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
+        #endregion Implementierung von IDisposable
     }
 }

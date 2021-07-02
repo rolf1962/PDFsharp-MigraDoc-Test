@@ -2,6 +2,10 @@
 
 namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
 {
+    /// <summary>
+    /// Die Klasse mit der Datenstruktur, wie sie vom <see cref="Exporter.Word.Brief">Exportziel</see>
+    /// erwartet wird.
+    /// </summary>
     public class Brief : ViewModelBase
     {
         private string _absenderName;
@@ -15,6 +19,9 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
         private string _grussformel;
         private string _absenderUnterschrift;
 
+        /// <summary>
+        /// Gibt den vollständigen Namen des Absenders zurück oder legt ihn fest
+        /// </summary>
         public string AbsenderName
         {
             get => _absenderName;
@@ -30,6 +37,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt Postleitzahl und Ort des Absenders zurück oder legt sie fest
+        /// </summary>
         public string AbsenderPostleitOrt
         {
             get => _absenderPostleitOrt;
@@ -45,6 +56,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt Straße und Hausnummer des Absenders zurück oder legt sie fest
+        /// </summary>
         public string AbsenderStrasseHausr
         {
             get => _absenderStrasseHausr;
@@ -57,6 +72,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt den vollständigen Namen des Empfängers zurück oder legt ihn fest
+        /// </summary>
         public string EmpfaengerName
         {
             get => _empfaengerName;
@@ -69,6 +88,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt Postleitzahl und Ort des Empfängers zurück oder legt ihn fest
+        /// </summary>
         public string EmpfaengerPostleitzahlOrt
         {
             get => _empfaengerPostleitzahlOrt;
@@ -81,6 +104,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt Straße und Hausnummer des Empfängers zurück oder legt ihn fest
+        /// </summary>
         public string EmpfaengerStrasseHausnr
         {
             get => _empfaengerStrasseHausnr;
@@ -93,6 +120,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt die Anrede des Empfängers zurück oder legt sie fest
+        /// </summary>
         public string Anrede
         {
             get => _anrede;
@@ -105,6 +136,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt den Brieftext zurück oder legt ihn fest
+        /// </summary>
         public string Text
         {
             get => _text;
@@ -117,6 +152,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt die Grußformel zurück oder legt sie fest
+        /// </summary>
         public string Grussformel
         {
             get => _grussformel;
@@ -129,6 +168,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
                 }
             }
         }
+
+        /// <summary>
+        /// Gibt die Unterschrift (Name und Vorname) des Absenders zurück oder legt sie fest
+        /// </summary>
         public string AbsenderUnterschrift
         {
             get => _absenderUnterschrift;
