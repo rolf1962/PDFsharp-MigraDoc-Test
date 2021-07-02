@@ -1,8 +1,8 @@
-﻿using Microsoft.Office.Interop.Word;
+﻿using GalaSoft.MvvmLight;
 
-namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
+namespace PDFsharp_MigraDoc.WpfApp.ViewModels.Documents
 {
-    public class Brief : WordDocumentBase
+    public class Brief : ViewModelBase
     {
         private string _absenderName;
         private string _absenderPostleitOrt;
@@ -15,19 +15,10 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         private string _grussformel;
         private string _absenderUnterschrift;
 
-        public Brief(Application application)
-        {
-            Application = application;
-
-            object templateFileName = GetTemplatePath(TemplateFileNames.Brief);
-            Document = Application.Documents.Add(ref templateFileName);
-
-
-        }
-
         public string AbsenderName
         {
-            get => _absenderName; set
+            get => _absenderName;
+            set
             {
                 if (_absenderName != value)
                 {
@@ -41,7 +32,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string AbsenderPostleitOrt
         {
-            get => _absenderPostleitOrt; set
+            get => _absenderPostleitOrt;
+            set
             {
                 if (_absenderPostleitOrt != value)
                 {
@@ -55,7 +47,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string AbsenderStrasseHausr
         {
-            get => _absenderStrasseHausr; set
+            get => _absenderStrasseHausr;
+            set
             {
                 if (_absenderStrasseHausr != value)
                 {
@@ -66,7 +59,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string EmpfaengerName
         {
-            get => _empfaengerName; set
+            get => _empfaengerName;
+            set
             {
                 if (_empfaengerName != value)
                 {
@@ -77,7 +71,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string EmpfaengerPostleitzahlOrt
         {
-            get => _empfaengerPostleitzahlOrt; set
+            get => _empfaengerPostleitzahlOrt;
+            set
             {
                 if (_empfaengerPostleitzahlOrt != value)
                 {
@@ -88,7 +83,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string EmpfaengerStrasseHausnr
         {
-            get => _empfaengerStrasseHausnr; set
+            get => _empfaengerStrasseHausnr;
+            set
             {
                 if (_empfaengerStrasseHausnr != value)
                 {
@@ -99,7 +95,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string Anrede
         {
-            get => _anrede; set
+            get => _anrede;
+            set
             {
                 if (_anrede != value)
                 {
@@ -110,7 +107,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string Text
         {
-            get => _text; set
+            get => _text;
+            set
             {
                 if (_text != value)
                 {
@@ -121,7 +119,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string Grussformel
         {
-            get => _grussformel; set
+            get => _grussformel;
+            set
             {
                 if (_grussformel != value)
                 {
@@ -132,7 +131,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
         }
         public string AbsenderUnterschrift
         {
-            get => _absenderUnterschrift; set
+            get => _absenderUnterschrift;
+            set
             {
                 if (_absenderUnterschrift != value)
                 {
@@ -141,34 +141,5 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments
                 }
             }
         }
-
-        public override void WriteToFormFields()
-        {
-            Document.FormFields[ref FormFieldNames.AbsName].Result = AbsenderName;
-            Document.FormFields[ref FormFieldNames.AbsPlzOrt].Result = AbsenderPostleitOrt;
-            Document.FormFields[ref FormFieldNames.AbsStrasseHausnr].Result = AbsenderStrasseHausr;
-            Document.FormFields[ref FormFieldNames.AbsUnterschrift].Result = AbsenderUnterschrift;
-            Document.FormFields[ref FormFieldNames.Anrede].Result = Anrede;
-            Document.FormFields[ref FormFieldNames.EmpfName].Result = EmpfaengerName;
-            Document.FormFields[ref FormFieldNames.EmpfPlzOrt].Result = EmpfaengerPostleitzahlOrt;
-            Document.FormFields[ref FormFieldNames.EmpfStrasseHausnr].Result = EmpfaengerStrasseHausnr;
-            Document.FormFields[ref FormFieldNames.Grussformel].Result = Grussformel;
-            Document.FormFields[ref FormFieldNames.Text].Result = Text;
-        }
-
-        private static class FormFieldNames
-        {
-            public static object AbsName = "AbsName";
-            public static object AbsPlzOrt = "AbsPlzOrt";
-            public static object AbsStrasseHausnr = "AbsStrasseHausnr";
-            public static object AbsUnterschrift = "AbsUnterschrift";
-            public static object Anrede = "Anrede";
-            public static object EmpfName = "EmpfName";
-            public static object EmpfPlzOrt = "EmpfPlzOrt";
-            public static object EmpfStrasseHausnr = "EmpfStrasseHausnr";
-            public static object Grussformel = "Grussformel";
-            public static object Text = "Text";
-        }
-
     }
 }

@@ -70,9 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\WordDocuments\Brief.cs" />
-    <Compile Include="ViewModels\WordDocuments\TemplateFileNames.cs" />
-    <Compile Include="ViewModels\WordDocuments\WordDocumentBase.cs" />
+    <Compile Include="Exporter\Word\Brief.cs" />
+    <Compile Include="ViewModels\Documents\Brief.cs" />
+    <Compile Include="Exporter\Word\TemplateFileNames.cs" />
+    <Compile Include="Exporter\Word\ExporterBase.cs" />
     <Compile Include="Views\RecipientSelectionWindow.xaml.cs">
       <DependentUpon>RecipientSelectionWindow.xaml</DependentUpon>
     </Compile>
@@ -86,7 +87,7 @@
     </Compile>
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\SerialLetter.cs" />
-    <Compile Include="Models\SerialLetterContext.cs" />
+    <Compile Include="DataAccess\SerialLetterContext.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

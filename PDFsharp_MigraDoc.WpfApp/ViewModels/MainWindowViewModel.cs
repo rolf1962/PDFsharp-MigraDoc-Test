@@ -1,14 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using PDFsharp_MigraDoc.WpfApp.DataAccess;
 using PDFsharp_MigraDoc.WpfApp.Models;
-using PDFsharp_MigraDoc.WpfApp.ViewModels.WordDocuments;
 using PDFsharp_MigraDoc.WpfApp.Views;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using MsWord = Microsoft.Office.Interop.Word;
@@ -39,12 +35,14 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 
         private void CreateSerialLettersExecute()
         {
-            WordApplication = new MsWord.Application();
-            WordApplication.Visible = true;
+            MsWord.Application wordApplication = new MsWord.Application
+            {
+                Visible = false
+            };
 
             Parallel.ForEach(SerialLetter.Recipients, recipient =>
             {
-                Brief briefDocument = new Brief(WordApplication)
+                Documents.Brief briefDocument = new Documents.Brief()
                 {
                     AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
                     AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
@@ -60,11 +58,14 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                     Text = SerialLetter.Text
                 };
 
-                briefDocument.WriteToFormFields();
+                Exporter.Word.Brief briefExporter = new Exporter.Word.Brief(wordApplication, briefDocument);
+                briefExporter.WriteToFormFields();
             });
 
-            Marshal.FinalReleaseComObject(WordApplication);
-            WordApplication = null;
+            wordApplication.Visible = true;
+
+            Marshal.FinalReleaseComObject(wordApplication);
+            wordApplication = null;
         }
 
         private bool AddRecipientCanExecute(Person p)
@@ -109,8 +110,6 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         }
 
         private SerialLetterContext SerialLetterContext { get; }
-
-        private MsWord.Application WordApplication { get; set; }
 
         public Person SelectedRecipient
         {

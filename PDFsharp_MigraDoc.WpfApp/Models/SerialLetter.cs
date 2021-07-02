@@ -1,31 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace PDFsharp_MigraDoc.WpfApp.Models
 {
     public class SerialLetter : ModelBase
     {
-        private Person sender;
-        private string text;
+        private Person _sender;
+        private string _text;
 
         public Person Sender
         {
-            get => sender; set
+            get => _sender; set
             {
-                if (sender != value)
+                if (_sender != value)
                 {
-                    sender = value;
+                    _sender = value;
                     NotifyPropertyChanged();
                 }
             }
         }
         public string Text
         {
-            get => text; set
+            get => _text; set
             {
                 if (Text != value)
                 {
-                    text = value;
+                    _text = value;
                     NotifyPropertyChanged();
                 }
             }

@@ -2,46 +2,49 @@
 {
     public class Person : ModelBase
     {
-        private string name;
-        private string vorname;
-        private string postleitzahl;
-        private string ort;
-        private string strasse;
-        private string hausNr;
-        private string anrede;
-        private string grussformel;
+        private string _name;
+        private string _vorname;
+        private string _postleitzahl;
+        private string _ort;
+        private string _strasse;
+        private string _hausNr;
+        private string _anrede;
+        private string _grussformel;
 
         public string Name
         {
-            get => name; internal set
+            get => _name; 
+            set
             {
-                if (name != value)
+                if (_name != value)
                 {
-                    name = value;
+                    _name = value;
                     NotifyPropertyChanged();
                 }
             }
         }
         public string Vorname
         {
-            get => vorname; internal set
+            get => _vorname; 
+            set
             {
-                if (vorname != value)
+                if (_vorname != value)
                 {
-                    vorname = value;
+                    _vorname = value;
                     NotifyPropertyChanged();
                 }
             }
         }
         public string Postleitzahl
         {
-            get => postleitzahl; internal set
+            get => _postleitzahl; 
+            set
             {
-                if (postleitzahl != value)
+                if (_postleitzahl != value)
                 {
-                    if (postleitzahl != value)
+                    if (_postleitzahl != value)
                     {
-                        postleitzahl = value;
+                        _postleitzahl = value;
                         NotifyPropertyChanged();
                     }
                 }
@@ -49,13 +52,14 @@
         }
         public string Ort
         {
-            get => ort; internal set
+            get => _ort; 
+            set
             {
-                if (ort != value)
+                if (_ort != value)
                 {
-                    if (ort != value)
+                    if (_ort != value)
                     {
-                        ort = value;
+                        _ort = value;
                         NotifyPropertyChanged();
                     }
                 }
@@ -63,44 +67,48 @@
         }
         public string Strasse
         {
-            get => strasse; internal set
+            get => _strasse; 
+            set
             {
-                if (strasse != value)
+                if (_strasse != value)
                 {
-                    strasse = value;
+                    _strasse = value;
                     NotifyPropertyChanged();
                 }
             }
         }
         public string HausNr
         {
-            get => hausNr; internal set
+            get => _hausNr; 
+            set
             {
-                if (hausNr != value)
+                if (_hausNr != value)
                 {
-                    hausNr = value;
+                    _hausNr = value;
                     NotifyPropertyChanged();
                 }
             }
         }
         public string Anrede
         {
-            get => anrede; set
+            get => _anrede; 
+            set
             {
-                if (anrede != value)
+                if (_anrede != value)
                 {
-                    anrede = value;
+                    _anrede = value;
                     NotifyPropertyChanged();
                 }
             }
         }
         public string Grussformel
         {
-            get => grussformel; set
+            get => _grussformel; 
+            set
             {
-                if (grussformel != value)
+                if (_grussformel != value)
                 {
-                    grussformel = value;
+                    _grussformel = value;
                     NotifyPropertyChanged();
                 }
             }

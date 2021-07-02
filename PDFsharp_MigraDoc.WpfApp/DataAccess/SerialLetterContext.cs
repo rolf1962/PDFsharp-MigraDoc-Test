@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using PDFsharp_MigraDoc.WpfApp.Models;
+using System.Collections.Generic;
 
-namespace PDFsharp_MigraDoc.WpfApp.Models
+namespace PDFsharp_MigraDoc.WpfApp.DataAccess
 {
     public class SerialLetterContext
     {
@@ -75,6 +76,8 @@ namespace PDFsharp_MigraDoc.WpfApp.Models
 
         public SerialLetter SerialLetter { get; } = new SerialLetter();
 
+        public IReadOnlyList<Person> Personen { get; private set; }
+
         public static IReadOnlyList<string> Anreden { get; } = new string[]
         {
             "Sehr geehrter Herr ",
@@ -91,7 +94,5 @@ namespace PDFsharp_MigraDoc.WpfApp.Models
             "Viele Grüße ",
             "Liebe Grüße "
         };
-
-        public IReadOnlyList<Person> Personen { get; private set; }
     }
 }
