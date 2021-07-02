@@ -5,25 +5,31 @@ using System.Runtime.InteropServices;
 
 namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
 {
-    public abstract class ExporterBase<T> : IDisposable
+    public abstract class ExporterBase<T> : Exporter.ExporterBase<T>, IDisposable
     {
         private bool disposedValue;
+        private bool _visible;
 
-        public ExporterBase(Application application, T dataSource)
+        public ExporterBase(T dataSource) : base(dataSource)
         {
-            Application = application;
-            DataSource = dataSource;
+            Application = new Application();
+            Visible = false;
         }
 
         protected Application Application { get; set; }
 
-        protected Document Document { get; set; }
-
-        public T DataSource { get; }
-
         public static string GetTemplatePath(string TemplateName)
         {
             return Path.GetFullPath(Path.Combine("WordTemplates", TemplateName));
+        }
+
+        public bool Visible
+        {
+            get => _visible;
+            set
+            {
+                Application.Visible = _visible = value;
+            }
         }
 
         public abstract void WriteToFormFields();
@@ -39,13 +45,20 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
 
                 // TODO: Nicht verwaltete Ressourcen (nicht verwaltete Objekte) freigeben und Finalizer überschreiben
                 // TODO: Große Felder auf NULL setzen
-                if (null != Document)
+                if (null != Application)
                 {
-                    if (Marshal.IsComObject(Document))
+                    if (Marshal.IsComObject(Application))
                     {
-                        Marshal.FinalReleaseComObject(Document);
+                        foreach(Document document in Application.Documents)
+                        {
+                            Marshal.FinalReleaseComObject(document);
+                        }
+
+                        Application.Visible = true;
+
+                        Marshal.FinalReleaseComObject(Application);
                     }
-                    Document = null;
+                    Application = null;
                 }
 
                 disposedValue = true;

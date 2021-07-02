@@ -4,10 +4,9 @@ using PDFsharp_MigraDoc.WpfApp.DataAccess;
 using PDFsharp_MigraDoc.WpfApp.Models;
 using PDFsharp_MigraDoc.WpfApp.Views;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using MsWord = Microsoft.Office.Interop.Word;
 
 namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 {
@@ -35,45 +34,54 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 
         private void CreateSerialLettersExecute()
         {
-            MsWord.Application wordApplication = new MsWord.Application
+            var briefViewModels = SerialLetter.Recipients.Select(recipient => new Documents.Brief() 
             {
-                Visible = false
-            };
+                AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
+                AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
+                AbsenderStrasseHausr = $"{SerialLetter.Sender.Strasse} {SerialLetter.Sender.HausNr}",
+                AbsenderUnterschrift = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
+                Grussformel = recipient.Grussformel,
 
-            Parallel.ForEach(SerialLetter.Recipients, recipient =>
-            {
-                Documents.Brief briefDocument = new Documents.Brief()
-                {
-                    AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
-                    AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
-                    AbsenderStrasseHausr = $"{SerialLetter.Sender.Strasse} {SerialLetter.Sender.HausNr}",
-                    AbsenderUnterschrift = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
-                    Grussformel = recipient.Grussformel,
+                Anrede = recipient.Anrede,
+                EmpfaengerName = $"{recipient.Vorname} {recipient.Name}",
+                EmpfaengerPostleitzahlOrt = $"{recipient.Postleitzahl} {recipient.Ort}",
+                EmpfaengerStrasseHausnr = $"{recipient.Strasse} {recipient.HausNr}",
 
-                    Anrede = recipient.Anrede,
-                    EmpfaengerName = $"{recipient.Vorname} {recipient.Name}",
-                    EmpfaengerPostleitzahlOrt = $"{recipient.Postleitzahl} {recipient.Ort}",
-                    EmpfaengerStrasseHausnr = $"{recipient.Strasse} {recipient.HausNr}",
-
-                    Text = SerialLetter.Text
-                };
-
-                using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief(wordApplication, briefDocument))
-                {
-                    briefExporter.WriteToFormFields();
-                }
+                Text = SerialLetter.Text
             });
 
-            wordApplication.Visible = true;
-            
-            if (null != wordApplication)
+            using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief())
             {
-                if (Marshal.IsComObject(wordApplication))
+                foreach (Documents.Brief briefViewModel in briefViewModels)
                 {
-                    Marshal.FinalReleaseComObject(wordApplication);
+                    briefExporter.DataSource = briefViewModel;
+                    briefExporter.WriteToFormFields();
                 }
-                wordApplication = null;
             }
+
+            //Parallel.ForEach(SerialLetter.Recipients, recipient =>
+            //{
+            //    Documents.Brief briefViewModel = new Documents.Brief()
+            //    {
+            //        AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
+            //        AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
+            //        AbsenderStrasseHausr = $"{SerialLetter.Sender.Strasse} {SerialLetter.Sender.HausNr}",
+            //        AbsenderUnterschrift = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
+            //        Grussformel = recipient.Grussformel,
+
+            //        Anrede = recipient.Anrede,
+            //        EmpfaengerName = $"{recipient.Vorname} {recipient.Name}",
+            //        EmpfaengerPostleitzahlOrt = $"{recipient.Postleitzahl} {recipient.Ort}",
+            //        EmpfaengerStrasseHausnr = $"{recipient.Strasse} {recipient.HausNr}",
+
+            //        Text = SerialLetter.Text
+            //    };
+
+            //    using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief(briefViewModel))
+            //    {
+            //        briefExporter.WriteToFormFields();
+            //    }
+            //});
         }
 
         private bool AddRecipientCanExecute(Person p)

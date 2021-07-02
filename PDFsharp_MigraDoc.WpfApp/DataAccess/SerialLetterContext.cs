@@ -3,8 +3,15 @@ using System.Collections.Generic;
 
 namespace PDFsharp_MigraDoc.WpfApp.DataAccess
 {
+    /// <summary>
+    /// Die Klasse stellt die Daten für die Erzeugung von Serienbriefen bereit
+    /// </summary>
     public class SerialLetterContext
     {
+        /// <summary>
+        /// Erzeugt einen neuen <see cref="SerialLetterContext"/>
+        /// </summary>
+        /// <param name="createSampleData">gibt an, ob Beispieldaten erzeugt werden sollen.</param>
         public SerialLetterContext(bool createSampleData = false)
         {
             if (createSampleData)
@@ -13,6 +20,9 @@ namespace PDFsharp_MigraDoc.WpfApp.DataAccess
             }
         }
 
+        /// <summary>
+        /// Erzeugt Beispieldaten
+        /// </summary>
         private void CreateSampleData()
         {
             Person klaus = new Person()
@@ -74,10 +84,21 @@ namespace PDFsharp_MigraDoc.WpfApp.DataAccess
             SerialLetter.Recipients.Add(ilse);
         }
 
+        /// <summary>
+        /// Gibt den Datencontainer für Serienbriefe zurück
+        /// </summary>
         public SerialLetter SerialLetter { get; } = new SerialLetter();
 
+        /// <summary>
+        /// Gibt eine Liste aller vorhandenen <see cref="Person">Personen</see> zurück, die für 
+        /// <see cref="SerialLetter.Recipients"/> und <see cref="SerialLetter.Sender"/> verwendet
+        /// werden können.
+        /// </summary>
         public IReadOnlyList<Person> Personen { get; private set; }
 
+        /// <summary>
+        /// Gibt eine Liste häufig verwendeter Briefanreden zurück
+        /// </summary>
         public static IReadOnlyList<string> Anreden { get; } = new string[]
         {
             "Sehr geehrter Herr ",
@@ -88,6 +109,9 @@ namespace PDFsharp_MigraDoc.WpfApp.DataAccess
             "Liebe Frau ",
         };
 
+        /// <summary>
+        /// Gibt eine Liste häufig verwendeter Grußformeln zurück
+        /// </summary>
         public static IReadOnlyList<string> Grussformeln { get; } = new string[]
         {
             "Mit freundlichen Grüßen ",

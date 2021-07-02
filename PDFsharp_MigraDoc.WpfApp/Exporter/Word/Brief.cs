@@ -4,26 +4,25 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
 {
     public class Brief : ExporterBase<ViewModels.Documents.Brief>
     {
-        public Brief(Application application, ViewModels.Documents.Brief brief) : base(application, brief)
+        public Brief(ViewModels.Documents.Brief datasource = null) : base(datasource)
         {
-            Application = application;
-
-            object templateFileName = GetTemplatePath(TemplateFileNames.Brief);
-            Document = Application.Documents.Add(ref templateFileName);
         }
 
         public override void WriteToFormFields()
         {
-            Document.FormFields[ref FormFieldNames.AbsName].Result = DataSource.AbsenderName;
-            Document.FormFields[ref FormFieldNames.AbsPlzOrt].Result = DataSource.AbsenderPostleitOrt;
-            Document.FormFields[ref FormFieldNames.AbsStrasseHausnr].Result = DataSource.AbsenderStrasseHausr;
-            Document.FormFields[ref FormFieldNames.AbsUnterschrift].Result = DataSource.AbsenderUnterschrift;
-            Document.FormFields[ref FormFieldNames.Anrede].Result = DataSource.Anrede;
-            Document.FormFields[ref FormFieldNames.EmpfName].Result = DataSource.EmpfaengerName;
-            Document.FormFields[ref FormFieldNames.EmpfPlzOrt].Result = DataSource.EmpfaengerPostleitzahlOrt;
-            Document.FormFields[ref FormFieldNames.EmpfStrasseHausnr].Result = DataSource.EmpfaengerStrasseHausnr;
-            Document.FormFields[ref FormFieldNames.Grussformel].Result = DataSource.Grussformel;
-            Document.FormFields[ref FormFieldNames.Text].Result = DataSource.Text;
+            object templateFileName = GetTemplatePath(TemplateFileNames.Brief);
+            Document document = Application.Documents.Add(ref templateFileName);
+
+            document.FormFields[ref FormFieldNames.AbsName].Result = DataSource.AbsenderName;
+            document.FormFields[ref FormFieldNames.AbsPlzOrt].Result = DataSource.AbsenderPostleitOrt;
+            document.FormFields[ref FormFieldNames.AbsStrasseHausnr].Result = DataSource.AbsenderStrasseHausr;
+            document.FormFields[ref FormFieldNames.AbsUnterschrift].Result = DataSource.AbsenderUnterschrift;
+            document.FormFields[ref FormFieldNames.Anrede].Result = DataSource.Anrede;
+            document.FormFields[ref FormFieldNames.EmpfName].Result = DataSource.EmpfaengerName;
+            document.FormFields[ref FormFieldNames.EmpfPlzOrt].Result = DataSource.EmpfaengerPostleitzahlOrt;
+            document.FormFields[ref FormFieldNames.EmpfStrasseHausnr].Result = DataSource.EmpfaengerStrasseHausnr;
+            document.FormFields[ref FormFieldNames.Grussformel].Result = DataSource.Grussformel;
+            document.FormFields[ref FormFieldNames.Text].Result = DataSource.Text;
         }
 
         private static class FormFieldNames

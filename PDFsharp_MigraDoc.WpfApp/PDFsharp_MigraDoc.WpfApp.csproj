@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Exporter\ExporterBase.cs" />
     <Compile Include="Exporter\Word\Brief.cs" />
     <Compile Include="ViewModels\Documents\Brief.cs" />
     <Compile Include="Exporter\Word\TemplateFileNames.cs" />
