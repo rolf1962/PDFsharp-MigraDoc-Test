@@ -58,14 +58,22 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                     Text = SerialLetter.Text
                 };
 
-                Exporter.Word.Brief briefExporter = new Exporter.Word.Brief(wordApplication, briefDocument);
-                briefExporter.WriteToFormFields();
+                using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief(wordApplication, briefDocument))
+                {
+                    briefExporter.WriteToFormFields();
+                }
             });
 
             wordApplication.Visible = true;
-
-            Marshal.FinalReleaseComObject(wordApplication);
-            wordApplication = null;
+            
+            if (null != wordApplication)
+            {
+                if (Marshal.IsComObject(wordApplication))
+                {
+                    Marshal.FinalReleaseComObject(wordApplication);
+                }
+                wordApplication = null;
+            }
         }
 
         private bool AddRecipientCanExecute(Person p)
