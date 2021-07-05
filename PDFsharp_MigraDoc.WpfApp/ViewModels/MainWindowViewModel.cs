@@ -76,7 +76,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 
         #region Commands
         #region CreateSerialLettersCommand
-        
+
         /// <summary>
         /// Command zum Start der Serienbrieferzeugung
         /// </summary>
@@ -132,11 +132,16 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 
         private void CreateXmlExecute()
         {
-            Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetter);
-            exporter.DoExport();
+            try
+            {
+                Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetter);
+                exporter.DoExport();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.Error(ex, $"Fehler bei {nameof(CreateXmlExecute)}\n{ex.Message}");
+            }
         }
-
-
         #endregion CreateXmlCommand
 
         #region AddRecipientCommand

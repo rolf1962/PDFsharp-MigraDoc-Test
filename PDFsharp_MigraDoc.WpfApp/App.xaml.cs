@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using NLog;
+using NLog.Config;
+using NLog.Layouts;
+using NLog.Targets;
+using System;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 
 namespace PDFsharp_MigraDoc.WpfApp
@@ -13,5 +14,35 @@ namespace PDFsharp_MigraDoc.WpfApp
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            string loggerDirectory = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                Assembly.GetExecutingAssembly().GetName().Name);
+
+            LoggingConfiguration config = new LoggingConfiguration();
+
+            // Targets where to log to: File and Console
+            FileTarget logfile = new FileTarget("logfile")
+            {
+                Layout = Layout.FromString(
+                    "${longdate} " +
+                    "${message} " +
+                    "${exception:format=tostring,stacktrace:innerformat=tostring,stacktrace:maxInnerExceptionLevel=5}", true),
+                CreateDirs = true,
+                FileName = Path.Combine(loggerDirectory, "logger.txt")
+            };
+            ConsoleTarget logconsole = new ConsoleTarget("logconsole");
+
+            // Rules for mapping loggers to targets            
+            config.AddRule(LogLevel.Info, LogLevel.Fatal, logconsole);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+
+            // Apply config           
+            LogManager.Configuration = config;
+
+        }
+
+        public static Logger Logger { get; } = LogManager.GetCurrentClassLogger();
     }
 }
