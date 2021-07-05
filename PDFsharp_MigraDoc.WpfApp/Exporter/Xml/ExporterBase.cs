@@ -34,7 +34,7 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Xml
 
             XmlSerializer serializer = new XmlSerializer(GenericType);
 
-            using (XmlTextWriter writer = new XmlTextWriter(fullFilename, Encoding.UTF8))
+            using (XmlTextWriter writer = new XmlTextWriter(fullFilename, Encoding.UTF8) { Formatting = Formatting.Indented })
             {
                 serializer.Serialize(writer, DataSource);
             }
