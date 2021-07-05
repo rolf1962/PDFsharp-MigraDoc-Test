@@ -70,6 +70,7 @@
             </StatusBarItem>
         </StatusBar>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
+            <Button Content="Xml erzeugen" Command="{Binding CreateXmlCommand}"/>
             <Button Content="Dokumente erzeugen" Command="{Binding CreateSerialLettersCommand}"/>
             <Button Content="Beenden" Command="{Binding CloseWindowCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>

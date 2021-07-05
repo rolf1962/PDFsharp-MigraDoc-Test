@@ -1,4 +1,6 @@
 ﻿using Microsoft.Office.Interop.Word;
+using System;
+using System.IO;
 
 namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
 {
@@ -27,7 +29,14 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
         /// </summary>
         public override void DoExport()
         {
+            if (null == DataSource) { throw new NullReferenceException($"{nameof(DataSource)} darf nicht NULL sein."); }
+
+            string saveDirectory = Path.Combine(FileRoot, "Word");
+            if (!Directory.Exists(saveDirectory)) { Directory.CreateDirectory(saveDirectory); }
+
             object templateFileName = GetTemplatePath(TemplateFileNames.Brief);
+            object fullFilename = Path.Combine(saveDirectory, GenericType.Name + DateTime.Now.ToString("yyyyMMddhhmmss"));
+
             Document document = Application.Documents.Add(ref templateFileName);
 
             document.FormFields[ref FormFieldNames.AbsName].Result = DataSource.AbsenderName;
@@ -40,6 +49,9 @@ namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
             document.FormFields[ref FormFieldNames.EmpfStrasseHausnr].Result = DataSource.EmpfaengerStrasseHausnr;
             document.FormFields[ref FormFieldNames.Grussformel].Result = DataSource.Grussformel;
             document.FormFields[ref FormFieldNames.Text].Result = DataSource.Text;
+
+            document.SaveAs2(FileName: ref fullFilename);
+            FileNames.Add(Convert.ToString(fullFilename));
         }
 
         /// <summary>

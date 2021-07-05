@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using PDFsharp_MigraDoc.WpfApp.DataAccess;
 using PDFsharp_MigraDoc.WpfApp.Models;
 using PDFsharp_MigraDoc.WpfApp.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -28,7 +29,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
             AddRecipientCommand = new RelayCommand<Person>(p => AddRecipientExecute(p), p => AddRecipientCanExecute(p));
             RemoveRecipientCommand = new RelayCommand(RemoveRecipientExecute, RemoveRecipientCanExeute);
             CreateSerialLettersCommand = new RelayCommand(CreateSerialLettersExecute, CreateSerialLettersCanExecute);
-
+            CreateXmlCommand = new RelayCommand(CreateXmlExecute, CreateXmlCanExecute);
             SelectedRecipient = SerialLetter.Recipients.Count > 0 ? SerialLetter.Recipients[0] : null;
         }
 
@@ -121,6 +122,22 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
             }
         }
         #endregion CreateSerialLettersCommand
+
+        #region CreateXmlCommand
+        public RelayCommand CreateXmlCommand { get; }
+        private bool CreateXmlCanExecute()
+        {
+            return SerialLetter.Recipients.Count > 0;
+        }
+
+        private void CreateXmlExecute()
+        {
+            Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetter);
+            exporter.DoExport();
+        }
+
+
+        #endregion CreateXmlCommand
 
         #region AddRecipientCommand
 
