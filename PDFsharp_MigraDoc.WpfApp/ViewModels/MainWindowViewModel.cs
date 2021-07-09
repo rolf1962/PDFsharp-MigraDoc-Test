@@ -71,26 +71,9 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// </summary>
         private void CreateSerialLettersExecute()
         {
-            IEnumerable<PDFsharp_MigraDoc.ViewModels.Documents.Brief> briefViewModels = 
-                SerialLetterVM.Recipients.Select(recipient => new PDFsharp_MigraDoc.ViewModels.Documents.Brief()
-            {
-                AbsenderName = $"{SerialLetterVM.Sender.Vorname} {SerialLetterVM.Sender.Name}",
-                AbsenderPostleitOrt = $"{SerialLetterVM.Sender.Postleitzahl} {SerialLetterVM.Sender.Ort}",
-                AbsenderStrasseHausr = $"{SerialLetterVM.Sender.Strasse} {SerialLetterVM.Sender.HausNr}",
-                AbsenderUnterschrift = $"{SerialLetterVM.Sender.Vorname} {SerialLetterVM.Sender.Name}",
-                Grussformel = recipient.Grussformel,
-
-                Anrede = recipient.Anrede,
-                EmpfaengerName = $"{recipient.Vorname} {recipient.Name}",
-                EmpfaengerPostleitzahlOrt = $"{recipient.Postleitzahl} {recipient.Ort}",
-                EmpfaengerStrasseHausnr = $"{recipient.Strasse} {recipient.HausNr}",
-
-                Text = SerialLetterVM.Text
-            });
-
             using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief())
             {
-                foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in briefViewModels)
+                foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
                 {
                     briefExporter.DataSource = briefViewModel;
                     briefExporter.DoExport();
