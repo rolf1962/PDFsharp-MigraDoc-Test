@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace PDFsharp_MigraDoc.WpfApp.Exporter
+namespace PDFsharp_MigraDoc.Exporter
 {
     public abstract class ExporterBase<T> where T : class
     {

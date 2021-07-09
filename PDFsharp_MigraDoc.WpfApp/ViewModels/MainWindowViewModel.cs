@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using PDFsharp_MigraDoc.WpfApp.DataAccess;
-using PDFsharp_MigraDoc.WpfApp.Models;
+using PDFsharp_MigraDoc.DataAccess;
+using PDFsharp_MigraDoc.Models;
 using PDFsharp_MigraDoc.WpfApp.Views;
 using System;
 using System.Collections.Generic;
@@ -96,7 +96,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// </summary>
         private void CreateSerialLettersExecute()
         {
-            var briefViewModels = SerialLetter.Recipients.Select(recipient => new Documents.Brief()
+            var briefViewModels = SerialLetter.Recipients.Select(recipient => new PDFsharp_MigraDoc.ViewModels.Documents.Brief()
             {
                 AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
                 AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
@@ -114,7 +114,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 
             using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief())
             {
-                foreach (Documents.Brief briefViewModel in briefViewModels)
+                foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in briefViewModels)
                 {
                     briefExporter.DataSource = briefViewModel;
                     briefExporter.DoExport();

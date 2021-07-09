@@ -1,7 +1,7 @@
-﻿using PDFsharp_MigraDoc.WpfApp.Models;
+﻿using PDFsharp_MigraDoc.Models;
 using System.Collections.Generic;
 
-namespace PDFsharp_MigraDoc.WpfApp.DataAccess
+namespace PDFsharp_MigraDoc.DataAccess
 {
     /// <summary>
     /// Die Klasse stellt die Daten für die Erzeugung von Serienbriefen bereit

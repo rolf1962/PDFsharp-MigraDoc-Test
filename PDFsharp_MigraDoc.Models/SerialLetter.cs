@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace PDFsharp_MigraDoc.WpfApp.Models
+namespace PDFsharp_MigraDoc.Models
 {
     /// <summary>
     /// Die Klasse stellt die Daten für Serienbriefe bereit

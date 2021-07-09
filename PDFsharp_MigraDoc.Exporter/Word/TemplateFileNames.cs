@@ -1,4 +1,4 @@
-﻿namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
+﻿namespace PDFsharp_MigraDoc.Exporter.Word
 {
     /// <summary>
     /// Enthält die Dateinamen der vorhandenen Word-Vorlagen

@@ -42,6 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialLetterContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.Models\PDFsharp_MigraDoc.Models.csproj">
+      <Project>{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}</Project>
+      <Name>PDFsharp_MigraDoc.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

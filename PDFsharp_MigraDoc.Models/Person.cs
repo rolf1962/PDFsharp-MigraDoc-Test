@@ -1,4 +1,4 @@
-﻿namespace PDFsharp_MigraDoc.WpfApp.Models
+﻿namespace PDFsharp_MigraDoc.Models
 {
     /// <summary>
     /// Die Klasse für Personen, die als Absender oder Empfänger 

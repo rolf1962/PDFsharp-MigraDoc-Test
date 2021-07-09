@@ -78,12 +78,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Exporter\ExporterBase.cs" />
-    <Compile Include="Exporter\Word\Brief.cs" />
-    <Compile Include="Exporter\Xml\ExporterBase.cs" />
-    <Compile Include="ViewModels\Documents\Brief.cs" />
-    <Compile Include="Exporter\Word\TemplateFileNames.cs" />
-    <Compile Include="Exporter\Word\ExporterBase.cs" />
     <Compile Include="Views\RecipientSelectionWindow.xaml.cs">
       <DependentUpon>RecipientSelectionWindow.xaml</DependentUpon>
     </Compile>
@@ -95,11 +89,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\SerialLetter.cs" />
-    <Compile Include="DataAccess\SerialLetterContext.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -146,24 +136,6 @@
     <Folder Include="Converter\" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Microsoft.Office.Core">
-      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Word">
-      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>8</VersionMajor>
-      <VersionMinor>7</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -173,6 +145,24 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.DataAccess\PDFsharp_MigraDoc.DataAccess.csproj">
+      <Project>{5AF9E968-A51D-4343-8670-C11C745CF2DC}</Project>
+      <Name>PDFsharp_MigraDoc.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.Exporter\PDFsharp_MigraDoc.Exporter.csproj">
+      <Project>{11548a94-1ffd-4125-b9f0-c2578874af9f}</Project>
+      <Name>PDFsharp_MigraDoc.Exporter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.Models\PDFsharp_MigraDoc.Models.csproj">
+      <Project>{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}</Project>
+      <Name>PDFsharp_MigraDoc.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.ViewModels\PDFsharp_MigraDoc.ViewModels.csproj">
+      <Project>{3ab3e320-9d40-490d-8324-6664af20aa9f}</Project>
+      <Name>PDFsharp_MigraDoc.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

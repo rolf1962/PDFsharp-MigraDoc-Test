@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace PDFsharp_MigraDoc.WpfApp.Exporter.Xml
+namespace PDFsharp_MigraDoc.Exporter.Xml
 {
     public class ExporterBase<T> : Exporter.ExporterBase<T> where T : class
     {

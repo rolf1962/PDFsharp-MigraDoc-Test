@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
+namespace PDFsharp_MigraDoc.Exporter.Word
 {
     /// <summary>
     /// Die Klasse ist eine Ableitung von <see cref="Word.ExporterBase{T}"/>. 

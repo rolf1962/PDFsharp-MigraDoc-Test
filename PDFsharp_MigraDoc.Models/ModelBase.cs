@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace PDFsharp_MigraDoc.WpfApp.Models
+namespace PDFsharp_MigraDoc.Models
 {
     /// <summary>
     /// Die abstrakte Basisklasse für Models.

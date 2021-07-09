@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace PDFsharp_MigraDoc.WpfApp.Exporter.Word
+namespace PDFsharp_MigraDoc.Exporter.Word
 {
     /// <summary>
     /// Die abstrakte Basisklasse für alle Word-Exporter.
