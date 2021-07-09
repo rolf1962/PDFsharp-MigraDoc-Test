@@ -11,8 +11,8 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <CollectionViewSource x:Key="peopleViewSource" Source="{Binding People}"/>
-        <CollectionViewSource x:Key="recipientViewSource" Source="{Binding SerialLetter.Recipients}"/>
+        <CollectionViewSource x:Key="peopleViewSource" Source="{Binding SerialLetterVM.People}"/>
+        <CollectionViewSource x:Key="recipientViewSource" Source="{Binding SerialLetterVM.SerialLetter.Recipients}"/>
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" x:Name="mainMenu">
@@ -21,7 +21,7 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Label Content="Absender:" Width="100"/>
             <ComboBox x:Name="senderComboBox" 
-                      SelectedItem="{Binding SerialLetter.Sender}" 
+                      SelectedItem="{Binding SerialLetterVM.SerialLetter.Sender}" 
                       ItemsSource="{Binding Source={StaticResource peopleViewSource}}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

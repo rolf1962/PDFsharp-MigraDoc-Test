@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using PDFsharp_MigraDoc.DataAccess;
 using PDFsharp_MigraDoc.Models;
+using PDFsharp_MigraDoc.ViewModels;
 using PDFsharp_MigraDoc.WpfApp.Views;
 using System;
 using System.Collections.Generic;
@@ -22,21 +23,14 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// </summary>
         public MainWindowViewModel()
         {
-            SerialLetterContext = new SerialLetterContext(true);
-
             CloseWindowCommand = new RelayCommand<Window>(w => CloseWindowExec(w));
             OpenRecipientSelectionCommand = new RelayCommand(OpenRecipientSelectionExecute);
             AddRecipientCommand = new RelayCommand<Person>(p => AddRecipientExecute(p), p => AddRecipientCanExecute(p));
             RemoveRecipientCommand = new RelayCommand(RemoveRecipientExecute, RemoveRecipientCanExeute);
             CreateSerialLettersCommand = new RelayCommand(CreateSerialLettersExecute, CreateSerialLettersCanExecute);
             CreateXmlCommand = new RelayCommand(CreateXmlExecute, CreateXmlCanExecute);
-            SelectedRecipient = SerialLetter.Recipients.Count > 0 ? SerialLetter.Recipients[0] : null;
+            SelectedRecipient = SerialLetterVM.Recipients.Count > 0 ? SerialLetterVM.Recipients[0] : null;
         }
-
-        /// <summary>
-        /// Der Datencontainer
-        /// </summary>
-        private SerialLetterContext SerialLetterContext { get; }
 
         /// <summary>
         /// Der aktuell ausgewählte Empfänger
@@ -53,26 +47,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
             }
         }
 
-        /// <summary>
-        /// Gibt die <see cref="SerialLetter">Serienbriefdaten</see> zurück
-        /// </summary>
-        public SerialLetter SerialLetter { get => SerialLetterContext.SerialLetter; }
-
-        /// <summary>
-        /// Gibt alle <see cref="Person">Personen</see> aus der 
-        /// <see cref="SerialLetterContext">Datenquelle</see> zurück.
-        /// </summary>
-        public IReadOnlyList<Person> People { get => SerialLetterContext.Personen; }
-
-        /// <summary>
-        /// Gibt alle Anreden aus der <see cref="SerialLetterContext.Anreden">Datenquelle</see> zurück.
-        /// </summary>
-        public IReadOnlyList<string> Anreden { get => SerialLetterContext.Anreden; }
-
-        /// <summary>
-        /// Gibt alle Grußformeln aus der <see cref="SerialLetterContext.Grussformeln">Datenquelle</see> zurück.
-        /// </summary>
-        public IReadOnlyList<string> Grussformeln { get => SerialLetterContext.Grussformeln; }
+        public SerialLetterVM SerialLetterVM { get; } = new SerialLetterVM();
 
         #region Commands
         #region CreateSerialLettersCommand
@@ -88,7 +63,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// <returns><see cref="true"/>, wenn das Command ausgeführt werden kann, sonst false</returns>
         private bool CreateSerialLettersCanExecute()
         {
-            return SerialLetter.Recipients.Count > 0;
+            return SerialLetterVM.Recipients.Count > 0;
         }
 
         /// <summary>
@@ -96,12 +71,13 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// </summary>
         private void CreateSerialLettersExecute()
         {
-            var briefViewModels = SerialLetter.Recipients.Select(recipient => new PDFsharp_MigraDoc.ViewModels.Documents.Brief()
+            IEnumerable<PDFsharp_MigraDoc.ViewModels.Documents.Brief> briefViewModels = 
+                SerialLetterVM.Recipients.Select(recipient => new PDFsharp_MigraDoc.ViewModels.Documents.Brief()
             {
-                AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
-                AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
-                AbsenderStrasseHausr = $"{SerialLetter.Sender.Strasse} {SerialLetter.Sender.HausNr}",
-                AbsenderUnterschrift = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
+                AbsenderName = $"{SerialLetterVM.Sender.Vorname} {SerialLetterVM.Sender.Name}",
+                AbsenderPostleitOrt = $"{SerialLetterVM.Sender.Postleitzahl} {SerialLetterVM.Sender.Ort}",
+                AbsenderStrasseHausr = $"{SerialLetterVM.Sender.Strasse} {SerialLetterVM.Sender.HausNr}",
+                AbsenderUnterschrift = $"{SerialLetterVM.Sender.Vorname} {SerialLetterVM.Sender.Name}",
                 Grussformel = recipient.Grussformel,
 
                 Anrede = recipient.Anrede,
@@ -109,7 +85,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                 EmpfaengerPostleitzahlOrt = $"{recipient.Postleitzahl} {recipient.Ort}",
                 EmpfaengerStrasseHausnr = $"{recipient.Strasse} {recipient.HausNr}",
 
-                Text = SerialLetter.Text
+                Text = SerialLetterVM.Text
             });
 
             using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief())
@@ -127,14 +103,14 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         public RelayCommand CreateXmlCommand { get; }
         private bool CreateXmlCanExecute()
         {
-            return SerialLetter.Recipients.Count > 0;
+            return SerialLetterVM.Recipients.Count > 0;
         }
 
         private void CreateXmlExecute()
         {
             try
             {
-                Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetter);
+                Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetterVM.SerialLetter);
                 exporter.DoExport();
             }
             catch (Exception ex)
@@ -158,7 +134,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// <returns><see cref="true"/>, wenn das Command ausgeführt werden kann, sonst false</returns>
         private bool AddRecipientCanExecute(Person p)
         {
-            return p != null && !SerialLetter.Recipients.Contains(p);
+            return p != null && !SerialLetterVM.SerialLetter.Recipients.Contains(p);
         }
 
         /// <summary>
@@ -167,7 +143,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// <param name="p">die <see cref="Person"/>, die angefügt werden soll</param>
         private void AddRecipientExecute(Person p)
         {
-            SerialLetter.Recipients.Add(p);
+            SerialLetterVM.SerialLetter.Recipients.Add(p);
             SelectedRecipient = p;
         }
         #endregion AddRecipientCommand
@@ -210,15 +186,15 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// </summary>
         private void RemoveRecipientExecute()
         {
-            int currentIndex = SerialLetter.Recipients.IndexOf(SelectedRecipient);
-            SerialLetter.Recipients.Remove(SelectedRecipient);
-            if (currentIndex < SerialLetter.Recipients.Count)
+            int currentIndex = SerialLetterVM.SerialLetter.Recipients.IndexOf(SelectedRecipient);
+            SerialLetterVM.SerialLetter.Recipients.Remove(SelectedRecipient);
+            if (currentIndex < SerialLetterVM.SerialLetter.Recipients.Count)
             {
-                SelectedRecipient = SerialLetter.Recipients[currentIndex];
+                SelectedRecipient = SerialLetterVM.SerialLetter.Recipients[currentIndex];
             }
-            else if (SerialLetter.Recipients.Count > 0)
+            else if (SerialLetterVM.SerialLetter.Recipients.Count > 0)
             {
-                SelectedRecipient = SerialLetter.Recipients[SerialLetter.Recipients.Count - 1];
+                SelectedRecipient = SerialLetterVM.SerialLetter.Recipients[SerialLetterVM.SerialLetter.Recipients.Count - 1];
             }
         }
         #endregion RemoveRecipientCommand

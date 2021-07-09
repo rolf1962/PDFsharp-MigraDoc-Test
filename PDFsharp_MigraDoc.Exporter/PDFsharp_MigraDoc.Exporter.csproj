@@ -93,13 +93,13 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\PDFsharp_MigraDoc.ViewModels\PDFsharp_MigraDoc.ViewModels.csproj">
       <Project>{3ab3e320-9d40-490d-8324-6664af20aa9f}</Project>
       <Name>PDFsharp_MigraDoc.ViewModels</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
