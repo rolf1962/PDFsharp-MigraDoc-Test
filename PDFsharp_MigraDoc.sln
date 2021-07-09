@@ -10,6 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.DataAccess", "PDFsharp_MigraDoc.DataAccess\PDFsharp_MigraDoc.DataAccess.csproj", "{5AF9E968-A51D-4343-8670-C11C745CF2DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.Exporter", "PDFsharp_MigraDoc.Exporter\PDFsharp_MigraDoc.Exporter.csproj", "{11548A94-1FFD-4125-B9F0-C2578874AF9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.Models", "PDFsharp_MigraDoc.Models\PDFsharp_MigraDoc.Models.csproj", "{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.ViewModels", "PDFsharp_MigraDoc.ViewModels\PDFsharp_MigraDoc.ViewModels.csproj", "{3AB3E320-9D40-490D-8324-6664AF20AA9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +28,22 @@ Global
 		{3F7FC5F3-6499-4860-BFE9-5854BD528EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F7FC5F3-6499-4860-BFE9-5854BD528EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F7FC5F3-6499-4860-BFE9-5854BD528EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AF9E968-A51D-4343-8670-C11C745CF2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF9E968-A51D-4343-8670-C11C745CF2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF9E968-A51D-4343-8670-C11C745CF2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF9E968-A51D-4343-8670-C11C745CF2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11548A94-1FFD-4125-B9F0-C2578874AF9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11548A94-1FFD-4125-B9F0-C2578874AF9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11548A94-1FFD-4125-B9F0-C2578874AF9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11548A94-1FFD-4125-B9F0-C2578874AF9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB3E320-9D40-490D-8324-6664AF20AA9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB3E320-9D40-490D-8324-6664AF20AA9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB3E320-9D40-490D-8324-6664AF20AA9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB3E320-9D40-490D-8324-6664AF20AA9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
