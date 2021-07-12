@@ -16,6 +16,8 @@ namespace PDFsharp_MigraDoc.WpfApp
     {
         public App()
         {
+            // Einrichten von NLog
+            // ---------------------
             string loggerDirectory = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 Assembly.GetExecutingAssembly().GetName().Name);
@@ -40,7 +42,7 @@ namespace PDFsharp_MigraDoc.WpfApp
 
             // Apply config           
             LogManager.Configuration = config;
-
+            // ---------------------
         }
 
         public static Logger Logger { get; } = LogManager.GetCurrentClassLogger();

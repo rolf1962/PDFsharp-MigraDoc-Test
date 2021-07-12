@@ -1,14 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace PDFsharp_MigraDoc.Exporter.Xml
 {
+    /// <summary>
+    /// Die Basisklasse für alle Xml-Exporter. 
+    /// Für einfache Exporte der <see cref="Exporter.ExporterBase{T}.DataSource"/> reicht die Ausführung von <see cref="DoExport"/>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ExporterBase<T> : Exporter.ExporterBase<T> where T : class
     {
         /// <summary>
@@ -30,9 +32,9 @@ namespace PDFsharp_MigraDoc.Exporter.Xml
             string saveDirectory = Path.Combine(FileRoot, "Xml");
             if (!Directory.Exists(saveDirectory)) { Directory.CreateDirectory(saveDirectory); }
 
-            string fullFilename = Path.Combine(saveDirectory, $"{GenericType.Name}{DateTime.Now:yyyyMMddhhmmss}.xml");
+            string fullFilename = Path.Combine(saveDirectory, $"{DataSource.GetType().Name}{DateTime.Now:yyyyMMddhhmmss}.xml");
 
-            XmlSerializer serializer = new XmlSerializer(GenericType);
+            XmlSerializer serializer = new XmlSerializer(DataSource.GetType());
 
             using (XmlTextWriter writer = new XmlTextWriter(fullFilename, Encoding.UTF8) { Formatting = Formatting.Indented })
             {

@@ -35,7 +35,7 @@ namespace PDFsharp_MigraDoc.Exporter.Word
             if (!Directory.Exists(saveDirectory)) { Directory.CreateDirectory(saveDirectory); }
 
             object templateFileName = GetTemplatePath(TemplateFileNames.Brief);
-            object fullFilename = Path.Combine(saveDirectory, GenericType.Name + DateTime.Now.ToString("yyyyMMddhhmmssffff"));
+            object fullFilename = Path.Combine(saveDirectory, DataSource.GetType().Name + DateTime.Now.ToString("yyyyMMddhhmmssffff"));
 
             Document document = Application.Documents.Add(ref templateFileName);
 

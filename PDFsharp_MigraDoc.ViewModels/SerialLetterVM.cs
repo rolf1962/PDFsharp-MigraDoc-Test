@@ -8,13 +8,25 @@ using System.Linq;
 
 namespace PDFsharp_MigraDoc.ViewModels
 {
+    /// <summary>
+    /// Die Klasse stellt den einfachen Zugriff auf die Eigenschaften und Methoden von 
+    /// <see cref="DataAccess.SerialLetterContext"/> und <see cref="Documents.Brief"/>-ViewModels 
+    /// für alle <see cref="SerialLetter.Recipients"/> bereit.
+    /// </summary>
     public class SerialLetterVM : ViewModelBase
     {
+        /// <summary>
+        /// Erzeugt ein neues <see cref="SerialLetterVM">SerialLetter-ViewModel</see>
+        /// </summary>
         public SerialLetterVM()
         {
             SerialLetterContext = new SerialLetterContext(true);
         }
 
+        /// <summary>
+        /// Erzeugt für alle <see cref="Models.SerialLetter.Recipients"/> <see cref="Documents.Brief"/>-ViewModels.
+        /// </summary>
+        /// <returns>Eine <see cref="IEnumerable{T}"/> von  <see cref="Documents.Brief"/>-ViewModels.</returns>
         public IEnumerable<Documents.Brief> GetBriefVMs()
         {
             return Recipients.Select(recipient => new Documents.Brief()
@@ -35,16 +47,28 @@ namespace PDFsharp_MigraDoc.ViewModels
         }
 
         /// <summary>
-        /// Der Datencontainer
+        /// Gibt den <see cref="DataAccess.SerialLetterContext">Datencontainer</see> zurück
         /// </summary>
         private SerialLetterContext SerialLetterContext { get; }
 
+        /// <summary>
+        /// Gibt den in <see cref="DataAccess.SerialLetterContext"/> verwalteten <see cref="Models.SerialLetter"/> zurück.
+        /// </summary>
         public SerialLetter SerialLetter { get => SerialLetterContext.SerialLetter; }
 
+        /// <summary>
+        /// Gibt den <see cref="Models.SerialLetter.Sender"/> zurück.
+        /// </summary>
         public Person Sender { get => SerialLetterContext.SerialLetter.Sender; }
 
+        /// <summary>
+        /// Gibt den <see cref="Models.SerialLetter.Text"/> zurück.
+        /// </summary>
         public string Text { get => SerialLetterContext.SerialLetter.Text; }
 
+        /// <summary>
+        /// Gibt <see cref="Models.SerialLetter.Recipients"/> zurück.
+        /// </summary>
         public ObservableCollection<Person> Recipients { get => SerialLetterContext.SerialLetter.Recipients; }
 
         /// <summary>
