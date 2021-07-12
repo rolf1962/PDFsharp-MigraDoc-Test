@@ -1,12 +1,9 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using PDFsharp_MigraDoc.DataAccess;
+﻿using GalaSoft.MvvmLight.CommandWpf;
 using PDFsharp_MigraDoc.Models;
 using PDFsharp_MigraDoc.ViewModels;
 using PDFsharp_MigraDoc.WpfApp.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using System.Windows;
 
 namespace PDFsharp_MigraDoc.WpfApp.ViewModels
@@ -71,14 +68,36 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// </summary>
         private void CreateSerialLettersExecute()
         {
-            using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief())
+            try
             {
-                foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (sender, doWorkEventArgs) =>
                 {
-                    briefExporter.DataSource = briefViewModel;
-                    briefExporter.DoExport();
-                }
+                    IsBusy = true;
+
+                    using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief())
+                    {
+                        foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
+                        {
+
+                            briefExporter.DataSource = briefViewModel;
+                            briefExporter.DoExport();
+                        }
+                    }
+                };
+                worker.RunWorkerCompleted += (sender, doWorkEventArgs) =>
+                {
+                    IsBusy = false;
+                };
+
+                worker.RunWorkerAsync();
             }
+            catch (Exception ex)
+            {
+                App.Logger.Error(ex, $"Fehler bei {nameof(CreateSerialLettersExecute)}\n{ex.Message}");
+                IsBusy = false;
+            }
+
         }
         #endregion CreateSerialLettersCommand
 
@@ -86,6 +105,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         public RelayCommand CreateXmlCommand { get; }
         private bool CreateXmlCanExecute()
         {
+
             return SerialLetterVM.Recipients.Count > 0;
         }
 
@@ -93,12 +113,25 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         {
             try
             {
-                Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetterVM.SerialLetter);
-                exporter.DoExport();
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (sender, doWorkEventArgs) =>
+                {
+                    IsBusy = true;
+                    Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetterVM.SerialLetter);
+                    exporter.DoExport();
+                };
+
+                worker.RunWorkerCompleted += (sender, doWorkEventArgs) =>
+                {
+                    IsBusy = false;
+                };
+
+                worker.RunWorkerAsync();
             }
             catch (Exception ex)
             {
                 App.Logger.Error(ex, $"Fehler bei {nameof(CreateXmlExecute)}\n{ex.Message}");
+                IsBusy = false;
             }
         }
         #endregion CreateXmlCommand

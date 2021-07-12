@@ -1,7 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using PDFsharp_MigraDoc.DataAccess;
+﻿using PDFsharp_MigraDoc.DataAccess;
 using PDFsharp_MigraDoc.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
