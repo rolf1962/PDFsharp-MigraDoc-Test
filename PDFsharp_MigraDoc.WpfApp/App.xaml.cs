@@ -42,6 +42,7 @@ namespace PDFsharp_MigraDoc.WpfApp
 
             // Apply config           
             LogManager.Configuration = config;
+            Logger.Info($"Logging in Datei {logfile.FileName}");
             // ---------------------
         }
 
