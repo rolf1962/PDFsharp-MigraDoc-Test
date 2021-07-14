@@ -167,6 +167,18 @@
       <Project>{5AF9E968-A51D-4343-8670-C11C745CF2DC}</Project>
       <Name>PDFsharp_MigraDoc.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc\PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.csproj">
+      <Project>{55377ec9-c3e0-44f3-a481-af207006c503}</Project>
+      <Name>PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.Exporter.Word\PDFsharp_MigraDoc.Exporter.Word.csproj">
+      <Project>{1b5ece19-7dfe-4ed7-bb6f-49cb8d05962d}</Project>
+      <Name>PDFsharp_MigraDoc.Exporter.Word</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.Exporter.Xml\PDFsharp_MigraDoc.Exporter.Xml.csproj">
+      <Project>{a07bff7a-9c61-4d14-a667-04950a738eea}</Project>
+      <Name>PDFsharp_MigraDoc.Exporter.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PDFsharp_MigraDoc.Exporter\PDFsharp_MigraDoc.Exporter.csproj">
       <Project>{11548a94-1ffd-4125-b9f0-c2578874af9f}</Project>
       <Name>PDFsharp_MigraDoc.Exporter</Name>
