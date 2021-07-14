@@ -18,6 +18,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.Models", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.ViewModels", "PDFsharp_MigraDoc.ViewModels\PDFsharp_MigraDoc.ViewModels.csproj", "{3AB3E320-9D40-490D-8324-6664AF20AA9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.Exporter.Word", "PDFsharp_MigraDoc.Exporter.Word\PDFsharp_MigraDoc.Exporter.Word.csproj", "{1B5ECE19-7DFE-4ED7-BB6F-49CB8D05962D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc", "PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc\PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.csproj", "{55377EC9-C3E0-44F3-A481-AF207006C503}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFsharp_MigraDoc.Exporter.Xml", "PDFsharp_MigraDoc.Exporter.Xml\PDFsharp_MigraDoc.Exporter.Xml.csproj", "{A07BFF7A-9C61-4D14-A667-04950A738EEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +50,18 @@ Global
 		{3AB3E320-9D40-490D-8324-6664AF20AA9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AB3E320-9D40-490D-8324-6664AF20AA9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AB3E320-9D40-490D-8324-6664AF20AA9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B5ECE19-7DFE-4ED7-BB6F-49CB8D05962D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5ECE19-7DFE-4ED7-BB6F-49CB8D05962D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5ECE19-7DFE-4ED7-BB6F-49CB8D05962D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5ECE19-7DFE-4ED7-BB6F-49CB8D05962D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55377EC9-C3E0-44F3-A481-AF207006C503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55377EC9-C3E0-44F3-A481-AF207006C503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55377EC9-C3E0-44F3-A481-AF207006C503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55377EC9-C3E0-44F3-A481-AF207006C503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A07BFF7A-9C61-4D14-A667-04950A738EEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A07BFF7A-9C61-4D14-A667-04950A738EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A07BFF7A-9C61-4D14-A667-04950A738EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A07BFF7A-9C61-4D14-A667-04950A738EEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

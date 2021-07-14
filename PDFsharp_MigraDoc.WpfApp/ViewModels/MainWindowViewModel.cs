@@ -24,7 +24,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
             OpenRecipientSelectionCommand = new RelayCommand(OpenRecipientSelectionExecute);
             AddRecipientCommand = new RelayCommand<Person>(p => AddRecipientExecute(p), p => AddRecipientCanExecute(p));
             RemoveRecipientCommand = new RelayCommand(RemoveRecipientExecute, RemoveRecipientCanExeute);
-            CreateSerialLettersCommand = new RelayCommand(CreateSerialLettersExecute, CreateSerialLettersCanExecute);
+            CreateWordDocumentsCommand = new RelayCommand(CreateWordDocumentsExecute, CreateWordDocumentsCanExecute);
+            CreateMigraDocDocumentsCommand = new RelayCommand(CreateMigraDocDocumentsExecute, CreateMigraDocDocumentsCanExecute);
             CreateXmlCommand = new RelayCommand(CreateXmlExecute, CreateXmlCanExecute);
             SelectedRecipient = SerialLetterVM.Recipients.Count > 0 ? SerialLetterVM.Recipients[0] : null;
         }
@@ -47,26 +48,26 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         public SerialLetterVM SerialLetterVM { get; } = new SerialLetterVM();
 
         #region Commands
-        #region CreateSerialLettersCommand
+        #region CreateWordDocumentsCommand
 
         /// <summary>
-        /// Command zum Start der Serienbrieferzeugung
+        /// Command zum Start der Serienbrieferzeugung mit MS-Word
         /// </summary>
-        public RelayCommand CreateSerialLettersCommand { get; }
+        public RelayCommand CreateWordDocumentsCommand { get; }
 
         /// <summary>
-        /// Gibt zurück, ob <see cref="CreateSerialLettersCommand"/> ausgeführt werden kann.
+        /// Gibt zurück, ob <see cref="CreateWordDocumentsCommand"/> ausgeführt werden kann.
         /// </summary>
         /// <returns><see cref="true"/>, wenn das Command ausgeführt werden kann, sonst false</returns>
-        private bool CreateSerialLettersCanExecute()
+        private bool CreateWordDocumentsCanExecute()
         {
             return SerialLetterVM.Recipients.Count > 0;
         }
 
         /// <summary>
-        /// Führt <see cref="CreateSerialLettersCommand"/> aus
+        /// Führt <see cref="CreateWordDocumentsCommand"/> aus
         /// </summary>
-        private void CreateSerialLettersExecute()
+        private void CreateWordDocumentsExecute()
         {
             try
             {
@@ -94,12 +95,64 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
             }
             catch (Exception ex)
             {
-                App.Logger.Error(ex, $"Fehler bei {nameof(CreateSerialLettersExecute)}\n{ex.Message}");
+                App.Logger.Error(ex, $"Fehler bei {nameof(CreateWordDocumentsExecute)}\n{ex.Message}");
                 IsBusy = false;
             }
 
         }
-        #endregion CreateSerialLettersCommand
+        #endregion CreateWordDocumentsCommand
+
+        #region CreateMigraDocDocumentsCommand
+
+        /// <summary>
+        /// Command zum Start der Serienbrieferzeugung mit PDFsharp-MigraDoc
+        /// </summary>
+        public RelayCommand CreateMigraDocDocumentsCommand { get; }
+
+        /// <summary>
+        /// Gibt zurück, ob <see cref="CreateMigraDocDocumentsCommand"/> ausgeführt werden kann.
+        /// </summary>
+        /// <returns><see cref="true"/>, wenn das Command ausgeführt werden kann, sonst false</returns>
+        private bool CreateMigraDocDocumentsCanExecute()
+        {
+            return SerialLetterVM.Recipients.Count > 0;
+        }
+
+        /// <summary>
+        /// Führt <see cref="CreateMigraDocDocumentsCommand"/> aus
+        /// </summary>
+        private void CreateMigraDocDocumentsExecute()
+        {
+            try
+            {
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (sender, doWorkEventArgs) =>
+                {
+                    IsBusy = true;
+
+                    Exporter.PDFsharp_MigraDoc.Brief briefExporter = new Exporter.PDFsharp_MigraDoc.Brief();
+                    foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
+                    {
+                        briefExporter.DataSource = briefViewModel;
+                        briefExporter.DoExport();
+                    }
+                };
+                worker.RunWorkerCompleted += (sender, doWorkEventArgs) =>
+                {
+                    IsBusy = false;
+                };
+
+                worker.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.Error(ex, $"Fehler bei {nameof(CreateMigraDocDocumentsExecute)}\n{ex.Message}");
+                IsBusy = false;
+            }
+
+        }
+        #endregion CreateMigraDocDocumentsCommand
+
 
         #region CreateXmlCommand
         public RelayCommand CreateXmlCommand { get; }

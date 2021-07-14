@@ -72,8 +72,9 @@
                 </StatusBarItem>
             </StatusBar>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
+                <Button Content="Word-Dokumente erzeugen" Command="{Binding CreateWordDocumentsCommand}"/>
+                <Button Content="MigraDoc/PDFsharp-Dokumente erzeugen" Command="{Binding CreateMigraDocDocumentsCommand}"/>
                 <Button Content="Xml erzeugen" Command="{Binding CreateXmlCommand}"/>
-                <Button Content="Dokumente erzeugen" Command="{Binding CreateSerialLettersCommand}"/>
                 <Button Content="Beenden" Command="{Binding CloseWindowCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
             </StackPanel>
