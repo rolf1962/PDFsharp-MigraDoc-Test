@@ -4,10 +4,6 @@
     {
         private bool _isBusy;
 
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set => Set(ref _isBusy, value);
-        }
+        public bool IsBusy { get => _isBusy; set => Set(ref _isBusy, value); }
     }
 }

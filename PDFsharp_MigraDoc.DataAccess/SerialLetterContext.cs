@@ -28,53 +28,53 @@ namespace PDFsharp_MigraDoc.DataAccess
             Person klaus = new Person()
             {
                 Name = "Testmann",
-                Vorname = "Klaus",
-                Strasse = "Teststraße",
-                HausNr = "123",
-                Postleitzahl = "0815",
-                Ort = "Testhausen",
+                FirstName = "Klaus",
+                Street = "Teststraße",
+                HouseNumber = "123",
+                PostCode = "0815",
+                Place = "Testhausen",
             };
             Person gabriele = new Person()
             {
                 Name = "Testmann",
-                Vorname = "Gabriele",
-                Strasse = "Teststraße",
-                HausNr = "123",
-                Postleitzahl = "0815",
-                Ort = "Testhausen"
+                FirstName = "Gabriele",
+                Street = "Teststraße",
+                HouseNumber = "123",
+                PostCode = "0815",
+                Place = "Testhausen"
             };
             Person manfred = new Person()
             {
                 Name = "Mustermann",
-                Vorname = "Manfred",
-                Strasse = "Musterstraße",
-                HausNr = "123",
-                Postleitzahl = "4711",
-                Ort = "Musterdorf"
+                FirstName = "Manfred",
+                Street = "Musterstraße",
+                HouseNumber = "123",
+                PostCode = "4711",
+                Place = "Musterdorf"
             };
             Person ilse = new Person()
             {
                 Name = "Mustermann",
-                Vorname = "Ilse",
-                Strasse = "Musterstraße",
-                HausNr = "123",
-                Postleitzahl = "4711",
-                Ort = "Musterdorf"
+                FirstName = "Ilse",
+                Street = "Musterstraße",
+                HouseNumber = "123",
+                PostCode = "4711",
+                Place = "Musterdorf"
             };
 
-            klaus.Anrede = $"{Anreden[0]}{klaus.Name}";
-            klaus.Grussformel = Grussformeln[0];
+            klaus.Salutation = $"{Salutations[0]}{klaus.Name}";
+            klaus.Greeting = Greetings[0];
 
-            gabriele.Anrede = $"{Anreden[1]}{gabriele.Name}";
-            gabriele.Grussformel = Grussformeln[1];
+            gabriele.Salutation = $"{Salutations[1]}{gabriele.Name}";
+            gabriele.Greeting = Greetings[1];
 
-            manfred.Anrede = $"{Anreden[3]}{manfred.Vorname}";
-            manfred.Grussformel = Grussformeln[1];
+            manfred.Salutation = $"{Salutations[3]}{manfred.FirstName}";
+            manfred.Greeting = Greetings[1];
 
-            ilse.Anrede = $"{Anreden[5]}{ilse.Name}";
-            ilse.Grussformel = Grussformeln[2];
+            ilse.Salutation = $"{Salutations[5]}{ilse.Name}";
+            ilse.Greeting = Greetings[2];
 
-            Personen = new List<Person>() { klaus, gabriele, manfred, ilse };
+            People = new List<Person>() { klaus, gabriele, manfred, ilse };
 
             SerialLetter.Text = "Herzlichen Glückwunsch zum ersten Serienbrief. " +
                 "Die Briefe können Sie als MS-Word oder PDF Dokumente erzeugen oder " +
@@ -96,12 +96,12 @@ namespace PDFsharp_MigraDoc.DataAccess
         /// <see cref="SerialLetter.Recipients"/> und <see cref="SerialLetter.Sender"/> verwendet
         /// werden können.
         /// </summary>
-        public IReadOnlyList<Person> Personen { get; private set; }
+        public IReadOnlyList<Person> People { get; private set; }
 
         /// <summary>
         /// Gibt eine Liste häufig verwendeter Briefanreden zurück
         /// </summary>
-        public static IReadOnlyList<string> Anreden { get; } = new string[]
+        public static IReadOnlyList<string> Salutations { get; } = new string[]
         {
             "Sehr geehrter Herr ",
             "Sehr geehrte Frau ",
@@ -114,7 +114,7 @@ namespace PDFsharp_MigraDoc.DataAccess
         /// <summary>
         /// Gibt eine Liste häufig verwendeter Grußformeln zurück
         /// </summary>
-        public static IReadOnlyList<string> Grussformeln { get; } = new string[]
+        public static IReadOnlyList<string> Greetings { get; } = new string[]
         {
             "Mit freundlichen Grüßen ",
             "Viele Grüße ",

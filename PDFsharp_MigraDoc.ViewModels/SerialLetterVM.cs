@@ -8,7 +8,7 @@ namespace PDFsharp_MigraDoc.ViewModels
 {
     /// <summary>
     /// Die Klasse stellt den einfachen Zugriff auf die Eigenschaften und Methoden von 
-    /// <see cref="DataAccess.SerialLetterContext"/> und <see cref="Documents.Brief"/>-ViewModels 
+    /// <see cref="DataAccess.SerialLetterContext"/> und <see cref="Dokumente.Brief"/>-ViewModels 
     /// für alle <see cref="SerialLetter.Recipients"/> bereit.
     /// </summary>
     public class SerialLetterVM : ViewModelBase
@@ -22,23 +22,23 @@ namespace PDFsharp_MigraDoc.ViewModels
         }
 
         /// <summary>
-        /// Erzeugt für alle <see cref="Models.SerialLetter.Recipients"/> <see cref="Documents.Brief"/>-ViewModels.
+        /// Erzeugt für alle <see cref="Models.SerialLetter.Recipients"/> <see cref="Dokumente.Brief"/>-ViewModels.
         /// </summary>
-        /// <returns>Eine <see cref="IEnumerable{T}"/> von  <see cref="Documents.Brief"/>-ViewModels.</returns>
-        public IEnumerable<Documents.Brief> GetBriefVMs()
+        /// <returns>Eine <see cref="IEnumerable{T}"/> von  <see cref="Dokumente.Brief"/>-ViewModels.</returns>
+        public IEnumerable<Dokumente.Brief> GetBriefVMs()
         {
-            return Recipients.Select(recipient => new Documents.Brief()
+            return Recipients.Select(recipient => new Dokumente.Brief()
             {
-                AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
-                AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
-                AbsenderStrasseHausr = $"{SerialLetter.Sender.Strasse} {SerialLetter.Sender.HausNr}",
-                AbsenderUnterschrift = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
+                AbsenderName = $"{SerialLetter.Sender.FirstName} {SerialLetter.Sender.Name}",
+                AbsenderPostleitOrt = $"{SerialLetter.Sender.PostCode} {SerialLetter.Sender.Place}",
+                AbsenderStrasseHausr = $"{SerialLetter.Sender.Street} {SerialLetter.Sender.HouseNumber}",
+                AbsenderUnterschrift = $"{SerialLetter.Sender.FirstName} {SerialLetter.Sender.Name}",
                 
-                Grussformel = recipient.Grussformel,
-                Anrede = recipient.Anrede,
-                EmpfaengerName = $"{recipient.Vorname} {recipient.Name}",
-                EmpfaengerPostleitzahlOrt = $"{recipient.Postleitzahl} {recipient.Ort}",
-                EmpfaengerStrasseHausnr = $"{recipient.Strasse} {recipient.HausNr}",
+                Grussformel = recipient.Greeting,
+                Anrede = recipient.Salutation,
+                EmpfaengerName = $"{recipient.FirstName} {recipient.Name}",
+                EmpfaengerPostleitzahlOrt = $"{recipient.PostCode} {recipient.Place}",
+                EmpfaengerStrasseHausnr = $"{recipient.Street} {recipient.HouseNumber}",
 
                 Text = SerialLetter.Text
             });
@@ -63,16 +63,16 @@ namespace PDFsharp_MigraDoc.ViewModels
         /// Gibt alle <see cref="Person">Personen</see> aus der 
         /// <see cref="SerialLetterContext">Datenquelle</see> zurück.
         /// </summary>
-        public IReadOnlyList<Person> People { get => SerialLetterContext.Personen; }
+        public IReadOnlyList<Person> People { get => SerialLetterContext.People; }
 
         /// <summary>
-        /// Gibt alle Anreden aus der <see cref="SerialLetterContext.Anreden">Datenquelle</see> zurück.
+        /// Gibt alle Anreden aus der <see cref="SerialLetterContext.Salutations">Datenquelle</see> zurück.
         /// </summary>
-        public IReadOnlyList<string> Anreden { get => SerialLetterContext.Anreden; }
+        public IReadOnlyList<string> Salutations { get => SerialLetterContext.Salutations; }
 
         /// <summary>
-        /// Gibt alle Grußformeln aus der <see cref="SerialLetterContext.Grussformeln">Datenquelle</see> zurück.
+        /// Gibt alle Grußformeln aus der <see cref="SerialLetterContext.Greetings">Datenquelle</see> zurück.
         /// </summary>
-        public IReadOnlyList<string> Grussformeln { get => SerialLetterContext.Grussformeln; }
+        public IReadOnlyList<string> Greetings { get => SerialLetterContext.Greetings; }
     }
 }

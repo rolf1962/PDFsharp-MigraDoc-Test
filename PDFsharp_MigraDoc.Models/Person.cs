@@ -9,13 +9,13 @@ namespace PDFsharp_MigraDoc.Models
     public class Person : ViewModelBase
     {
         private string _name;
-        private string _vorname;
-        private string _postleitzahl;
-        private string _ort;
-        private string _strasse;
-        private string _hausNr;
-        private string _anrede;
-        private string _grussformel;
+        private string _firstName;
+        private string _postCode;
+        private string _place;
+        private string _street;
+        private string _houseNumber;
+        private string _salutation;
+        private string _greeting;
 
         /// <summary>
         /// Gibt den Nachnamen zurück oder legt ihn fest
@@ -25,37 +25,37 @@ namespace PDFsharp_MigraDoc.Models
         /// <summary>
         /// Gibt den/die Vornamen zurück oder legt ihn/sie fest
         /// </summary>
-        public string Vorname { get => _vorname; set => Set(ref _vorname, value); }
+        public string FirstName { get => _firstName; set => Set(ref _firstName, value); }
 
         /// <summary>
         /// Gibt die Postleitzahl zurück oder legt sie fest
         /// </summary>
-        public string Postleitzahl { get => _postleitzahl; set => Set(ref _postleitzahl, value); }
+        public string PostCode { get => _postCode; set => Set(ref _postCode, value); }
 
         /// <summary>
         /// Gibt den Ort zurück oder legt ihn fest
         /// </summary>
-        public string Ort { get => _ort; set => Set(ref _ort, value); }
+        public string Place { get => _place; set => Set(ref _place, value); }
 
         /// <summary>
         /// Gibt die Straße zurück oder legt sie fest
         /// </summary>
-        public string Strasse { get => _strasse; set => Set(ref _strasse, value); }
+        public string Street { get => _street; set => Set(ref _street, value); }
 
         /// <summary>
         /// Gibt die Hausnummer zurück oder legt sie fest
         /// </summary>
-        public string HausNr { get => _hausNr; set => Set(ref _hausNr, value); }
+        public string HouseNumber { get => _houseNumber; set => Set(ref _houseNumber, value); }
 
 
         /// <summary>
         /// Gibt die Anrede zurück oder legt fest fest
         /// </summary>
-        public string Anrede { get => _anrede; set => Set(ref _anrede, value); }
+        public string Salutation { get => _salutation; set => Set(ref _salutation, value); }
 
         /// <summary>
         /// Gibt die Grußformel zurück oder legt sie fest
         /// </summary>
-        public string Grussformel { get => _grussformel; set => Set(ref _grussformel, value); }
+        public string Greeting { get => _greeting; set => Set(ref _greeting, value); }
     }
 }

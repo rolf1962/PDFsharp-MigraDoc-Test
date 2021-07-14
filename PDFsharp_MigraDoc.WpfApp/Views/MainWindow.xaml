@@ -31,7 +31,7 @@
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}, {1}">
                                         <Binding Path="Name"/>
-                                        <Binding Path="Vorname"/>
+                                        <Binding Path="FirstName"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -50,9 +50,9 @@
                     <ListView.View>
                         <GridView AllowsColumnReorder="False" >
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="100" />
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Vorname}" Header="Vorname" Width="100" />
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Anrede}" Header="Anrede" Width="200"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Grussformel}" Header="Grußformel" Width="200"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" Header="Vorname" Width="100" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Salutation}" Header="Anrede" Width="200"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Greeting}" Header="Grußformel" Width="200"/>
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>

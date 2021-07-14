@@ -1,4 +1,4 @@
-﻿namespace PDFsharp_MigraDoc.ViewModels.Documents
+﻿namespace PDFsharp_MigraDoc.ViewModels.Dokumente
 {
     /// <summary>
     /// Die Klasse mit der Datenstruktur, wie sie vom <see cref="Exporter.Word.Brief">Exportziel</see>

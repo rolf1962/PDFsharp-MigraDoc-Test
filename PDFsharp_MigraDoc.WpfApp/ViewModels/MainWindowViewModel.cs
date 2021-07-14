@@ -74,7 +74,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 
                     using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief(openInViewer: OpenFilesInViewer))
                     {
-                        foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
+                        foreach (PDFsharp_MigraDoc.ViewModels.Dokumente.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
                         {
 
                             briefExporter.DataSource = briefViewModel;
@@ -127,7 +127,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                     IsBusy = true;
 
                     Exporter.PDFsharp_MigraDoc.Brief briefExporter = new Exporter.PDFsharp_MigraDoc.Brief(openInViewer: OpenFilesInViewer);
-                    foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
+                    foreach (PDFsharp_MigraDoc.ViewModels.Dokumente.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
                     {
                         briefExporter.DataSource = briefViewModel;
                         briefExporter.DoExport();

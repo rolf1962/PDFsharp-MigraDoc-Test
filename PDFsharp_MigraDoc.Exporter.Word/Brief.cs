@@ -5,26 +5,26 @@ using System.IO;
 namespace PDFsharp_MigraDoc.Exporter.Word
 {
     /// <summary>
-    /// Die Klasse ist eine Ableitung von <see cref="Word.ExporterBase{T}"/>. 
-    /// Sie stellt einen Exporter für <see cref="ViewModels.Documents.Brief"/> bereit
+    /// Die Klasse ist eine Ableitung von <see cref="ExporterBase{T}"/>. 
+    /// Sie stellt einen Exporter für <see cref="ViewModels.Dokumente.Brief"/> bereit
     /// </summary>
-    public class Brief : ExporterBase<ViewModels.Documents.Brief>
+    public class Brief : ExporterBase<ViewModels.Dokumente.Brief>
     {
         /// <summary>
         /// Erzeugt einen neuen <see cref="Exporter.Word.Brief">Exporter</see>
         /// </summary>
-        /// <param name="datasource">Ein <see cref="ViewModels.Documents.Brief">ViewModel</see>
+        /// <param name="datasource">Ein <see cref="ViewModels.Dokumente.Brief">ViewModel</see>
         /// mit den Daten für den Export.<br/>Der Parameter kann <see cref="null"/> 
         /// sein.<br/>Er ist i.d.R. immer null, wenn mehrere Dokumente erzeugt werden.<br/>
         /// Ein neues Dokument wird durch den Aufruf von <see cref="Exporter.ExporterBase{T}.DoExport"/> 
         /// erzeugt.<br/>Für jedes neue Dokument kann eine neue <see cref="Exporter.ExporterBase{T}.DataSource">
         /// Datenquelle</see> zugewiesen werden</param>
-        public Brief(ViewModels.Documents.Brief datasource = null, bool openInViewer = true) : base(datasource, openInViewer)
+        public Brief(ViewModels.Dokumente.Brief datasource = null, bool openInViewer = true) : base(datasource, openInViewer)
         {
         }
 
         /// <summary>
-        /// Führt den Export der Daten aus dem <see cref="ViewModels.Documents.Brief">ViewModel</see> 
+        /// Führt den Export der Daten aus dem <see cref="ViewModels.Dokumente.Brief">ViewModel</see> 
         /// in ein neu erzeugtes Word-Dokument aus.
         /// </summary>
         public override void DoExport()

@@ -10,8 +10,8 @@
         Title="Empfängerauswahl" Height="450" Width="800">
     <Window.Resources>
         <CollectionViewSource x:Key="peopleViewSource" Source="{Binding SerialLetterVM.People}"/>
-        <CollectionViewSource x:Key="anredenViewSource" Source="{Binding SerialLetterVM.Anreden}"/>
-        <CollectionViewSource x:Key="grussformelnViewSource" Source="{Binding SerialLetterVM.Grussformeln}"/>
+        <CollectionViewSource x:Key="anredenViewSource" Source="{Binding SerialLetterVM.Salutations}"/>
+        <CollectionViewSource x:Key="grussformelnViewSource" Source="{Binding SerialLetterVM.Greetings}"/>
         <CollectionViewSource x:Key="recipientViewSource" Source="{Binding SerialLetterVM.Recipients}"/>
     </Window.Resources>
     <DockPanel LastChildFill="True">
@@ -29,7 +29,7 @@
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}, {1}">
                                     <Binding Path="Name"/>
-                                    <Binding Path="Vorname"/>
+                                    <Binding Path="FirstName"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -59,34 +59,34 @@
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}, {1}">
                                     <Binding Path="Name"/>
-                                    <Binding Path="Vorname"/>
+                                    <Binding Path="FirstName"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                         <TextBlock Grid.Row="1" Grid.Column="1">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="Strasse"/>
-                                    <Binding Path="HausNr"/>
+                                    <Binding Path="Street"/>
+                                    <Binding Path="HouseNumber"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                         <TextBlock Grid.Row="2" Grid.Column="1">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="Postleitzahl"/>
-                                    <Binding Path="Ort"/>
+                                    <Binding Path="PostCode"/>
+                                    <Binding Path="Place"/>
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
                         <Label Content="Anrede" Grid.Row="3" Grid.Column="0"/>
                         <ComboBox ItemsSource="{Binding Source={StaticResource anredenViewSource}}" MinWidth="200"
                                   IsSynchronizedWithCurrentItem="False" IsEditable="True"
-                                  Text="{Binding Anrede}" Grid.Row="3" Grid.Column="1" />
+                                  Text="{Binding Salutation}" Grid.Row="3" Grid.Column="1" />
                         <Label Content="Grußformel" Grid.Row="4" Grid.Column="0"/>
                         <ComboBox ItemsSource="{Binding Source={StaticResource grussformelnViewSource}}" MinWidth="200"
                                   IsSynchronizedWithCurrentItem="False" IsEditable="True"
-                                  Text="{Binding Grussformel}" Grid.Row="4" Grid.Column="1" />
+                                  Text="{Binding Greeting}" Grid.Row="4" Grid.Column="1" />
                         <Button Content="Entfernen" Command="{Binding 
                                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
                                     Path=DataContext.RemoveRecipientCommand}"
