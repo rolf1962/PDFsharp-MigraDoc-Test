@@ -9,7 +9,7 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
 {
     public abstract class ExporterBase<T> : Exporter.ExporterBase<T> where T : class
     {
-        public ExporterBase(T dataSource = null) : base(dataSource)
+        public ExporterBase(T dataSource = null, bool openInViewer = true) : base(dataSource, openInViewer)
         {
 
         }

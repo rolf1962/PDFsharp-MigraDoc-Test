@@ -76,7 +76,9 @@ namespace PDFsharp_MigraDoc.DataAccess
 
             Personen = new List<Person>() { klaus, gabriele, manfred, ilse };
 
-            SerialLetter.Text = "Herzlichen Glückwunsch zum ersten Serienbrief";
+            SerialLetter.Text = "Herzlichen Glückwunsch zum ersten Serienbrief. " +
+                "Die Briefe können Sie als MS-Word oder PDF Dokumente erzeugen oder " +
+                "einfach die Daten in eine XML-Datei speichern.";
 
             SerialLetter.Sender = manfred;
             SerialLetter.Recipients.Add(klaus);

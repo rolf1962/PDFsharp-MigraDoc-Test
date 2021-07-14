@@ -14,6 +14,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private Person _selectedRecipient;
+        private bool _openFiles = true;
 
         /// <summary>
         /// Erzeugt ein neues <see cref="MainWindowViewModel"/>
@@ -31,19 +32,14 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         }
 
         /// <summary>
-        /// Der aktuell ausgewählte Empfänger
+        /// Gibt den aktuell ausgewählten Empfänger zurück oder legt ihn fest
         /// </summary>
-        public Person SelectedRecipient
-        {
-            get => _selectedRecipient; set
-            {
-                if (_selectedRecipient != value)
-                {
-                    _selectedRecipient = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
+        public Person SelectedRecipient { get => _selectedRecipient; set => Set(ref _selectedRecipient, value); }
+
+        /// <summary>
+        /// Gibt zurück oder legt fest, ob erzeugte Dateien angezeigt werden sollen 
+        /// </summary>
+        public bool OpenFilesInViewer { get => _openFiles; set => Set(ref _openFiles, value); }
 
         public SerialLetterVM SerialLetterVM { get; } = new SerialLetterVM();
 
@@ -76,7 +72,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                 {
                     IsBusy = true;
 
-                    using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief())
+                    using (Exporter.Word.Brief briefExporter = new Exporter.Word.Brief(openInViewer: OpenFilesInViewer))
                     {
                         foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
                         {
@@ -130,7 +126,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                 {
                     IsBusy = true;
 
-                    Exporter.PDFsharp_MigraDoc.Brief briefExporter = new Exporter.PDFsharp_MigraDoc.Brief();
+                    Exporter.PDFsharp_MigraDoc.Brief briefExporter = new Exporter.PDFsharp_MigraDoc.Brief(openInViewer: OpenFilesInViewer);
                     foreach (PDFsharp_MigraDoc.ViewModels.Documents.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
                     {
                         briefExporter.DataSource = briefViewModel;
@@ -170,7 +166,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                 worker.DoWork += (sender, doWorkEventArgs) =>
                 {
                     IsBusy = true;
-                    Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(SerialLetterVM.SerialLetter);
+                    Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(
+                        dataSource: SerialLetterVM.SerialLetter, openInViewer: OpenFilesInViewer);
                     exporter.DoExport();
                 };
 
@@ -274,6 +271,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
         /// Command zum Öffnen des Fensters zur Bearbeitung der <see cref="SerialLetter.Recipients">Empfängerliste</see>
         /// </summary>
         public RelayCommand OpenRecipientSelectionCommand { get; }
+
         /// <summary>
         /// Führt <see cref="OpenRecipientSelectionCommand"/> aus
         /// </summary>

@@ -29,10 +29,10 @@ namespace PDFsharp_MigraDoc.ViewModels
         {
             return Recipients.Select(recipient => new Documents.Brief()
             {
-                AbsenderName = $"{Sender.Vorname} {Sender.Name}",
-                AbsenderPostleitOrt = $"{Sender.Postleitzahl} {Sender.Ort}",
-                AbsenderStrasseHausr = $"{Sender.Strasse} {Sender.HausNr}",
-                AbsenderUnterschrift = $"{Sender.Vorname} {Sender.Name}",
+                AbsenderName = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
+                AbsenderPostleitOrt = $"{SerialLetter.Sender.Postleitzahl} {SerialLetter.Sender.Ort}",
+                AbsenderStrasseHausr = $"{SerialLetter.Sender.Strasse} {SerialLetter.Sender.HausNr}",
+                AbsenderUnterschrift = $"{SerialLetter.Sender.Vorname} {SerialLetter.Sender.Name}",
                 
                 Grussformel = recipient.Grussformel,
                 Anrede = recipient.Anrede,
@@ -40,7 +40,7 @@ namespace PDFsharp_MigraDoc.ViewModels
                 EmpfaengerPostleitzahlOrt = $"{recipient.Postleitzahl} {recipient.Ort}",
                 EmpfaengerStrasseHausnr = $"{recipient.Strasse} {recipient.HausNr}",
 
-                Text = Text
+                Text = SerialLetter.Text
             });
         }
 
@@ -53,16 +53,6 @@ namespace PDFsharp_MigraDoc.ViewModels
         /// Gibt den in <see cref="DataAccess.SerialLetterContext"/> verwalteten <see cref="Models.SerialLetter"/> zurück.
         /// </summary>
         public SerialLetter SerialLetter { get => SerialLetterContext.SerialLetter; }
-
-        /// <summary>
-        /// Gibt den <see cref="Models.SerialLetter.Sender"/> zurück.
-        /// </summary>
-        public Person Sender { get => SerialLetterContext.SerialLetter.Sender; }
-
-        /// <summary>
-        /// Gibt den <see cref="Models.SerialLetter.Text"/> zurück.
-        /// </summary>
-        public string Text { get => SerialLetterContext.SerialLetter.Text; }
 
         /// <summary>
         /// Gibt <see cref="Models.SerialLetter.Recipients"/> zurück.

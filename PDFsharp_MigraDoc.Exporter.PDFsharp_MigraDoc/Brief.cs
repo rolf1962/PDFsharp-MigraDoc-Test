@@ -24,7 +24,7 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
         /// Ein neues Dokument wird durch den Aufruf von <see cref="Exporter.ExporterBase{T}.DoExport"/> 
         /// erzeugt.<br/>Für jedes neue Dokument kann eine neue <see cref="Exporter.ExporterBase{T}.DataSource">
         /// Datenquelle</see> zugewiesen werden</param>
-        public Brief(ViewModels.Documents.Brief datasource = null) : base(datasource)
+        public Brief(ViewModels.Documents.Brief datasource = null, bool openInViewer = true) : base(datasource, openInViewer)
         {
         }
 
@@ -121,8 +121,23 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
 
             // Save the document...
             pdfRenderer.PdfDocument.Save(filename);
-            // ...and start a viewer.
-            Process.Start(filename);
+
+            FileNames.Add(filename);
+
+            if (OpenInViewer) { OpenFilesInViewer(new string[] { filename }); }
+        }
+
+        protected override void OpenFilesInViewer(string[] fileNames = null)
+        {
+            if (null == fileNames || fileNames.Length == 0)
+            {
+                fileNames = FileNames.ToArray();
+            }
+
+            foreach (string filename in fileNames)
+            {
+                Process.Start(filename);
+            }
         }
     }
 }

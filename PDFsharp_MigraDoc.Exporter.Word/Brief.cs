@@ -19,7 +19,7 @@ namespace PDFsharp_MigraDoc.Exporter.Word
         /// Ein neues Dokument wird durch den Aufruf von <see cref="Exporter.ExporterBase{T}.DoExport"/> 
         /// erzeugt.<br/>Für jedes neue Dokument kann eine neue <see cref="Exporter.ExporterBase{T}.DataSource">
         /// Datenquelle</see> zugewiesen werden</param>
-        public Brief(ViewModels.Documents.Brief datasource = null) : base(datasource)
+        public Brief(ViewModels.Documents.Brief datasource = null, bool openInViewer = true) : base(datasource, openInViewer)
         {
         }
 
@@ -51,7 +51,25 @@ namespace PDFsharp_MigraDoc.Exporter.Word
             document.FormFields[ref FormFieldNames.Text].Result = DataSource.Text;
 
             document.SaveAs2(FileName: ref fullFilename);
+            fullFilename = document.FullName;
+            document.Close();
+
             FileNames.Add(Convert.ToString(fullFilename));
+
+            if (OpenInViewer) { OpenFilesInViewer(new string[] { Convert.ToString(fullFilename) }); }
+        }
+
+        protected override void OpenFilesInViewer(string[] fileNames = null)
+        {
+            if (null == fileNames || fileNames.Length == 0)
+            {
+                fileNames = FileNames.ToArray();
+            }
+
+            foreach (string filename in fileNames)
+            {
+                Application.Documents.Open(filename);
+            }
         }
 
         /// <summary>

@@ -18,7 +18,7 @@ namespace PDFsharp_MigraDoc.Exporter.Word
         /// Erzeugt einen neuen Word-Exporter
         /// </summary>
         /// <param name="dataSource">Die <see cref="Exporter.ExporterBase{T}.DataSource">Daten</see> für den Export.</param>
-        public ExporterBase(T dataSource = null) : base(dataSource)
+        public ExporterBase(T dataSource = null, bool openInViewer = true) : base(dataSource, openInViewer)
         {
             Application = new Application();
             Visible = false;
@@ -74,6 +74,11 @@ namespace PDFsharp_MigraDoc.Exporter.Word
                         }
 
                         Application.Visible = true;
+                        if (!OpenInViewer)
+                        {
+                            object saveChanges = WdSaveOptions.wdPromptToSaveChanges;
+                            Application.Quit(ref saveChanges);
+                        }
 
                         Marshal.FinalReleaseComObject(Application);
                     }
@@ -84,12 +89,12 @@ namespace PDFsharp_MigraDoc.Exporter.Word
             }
         }
 
-        // // TODO: Finalizer nur überschreiben, wenn "Dispose(bool disposing)" Code für die Freigabe nicht verwalteter Ressourcen enthält
-        // ~ExporterBase()
-        // {
-        //     // Ändern Sie diesen Code nicht. Fügen Sie Bereinigungscode in der Methode "Dispose(bool disposing)" ein.
-        //     Dispose(disposing: false);
-        // }
+        // TODO: Finalizer nur überschreiben, wenn "Dispose(bool disposing)" Code für die Freigabe nicht verwalteter Ressourcen enthält
+        ~ExporterBase()
+        {
+            // Ändern Sie diesen Code nicht. Fügen Sie Bereinigungscode in der Methode "Dispose(bool disposing)" ein.
+            Dispose(disposing: false);
+        }
 
         public void Dispose()
         {

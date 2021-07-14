@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -17,7 +18,7 @@ namespace PDFsharp_MigraDoc.Exporter.Xml
         /// Erzeugt einen neuen Xml-Exporter
         /// </summary>
         /// <param name="dataSource">Die <see cref="Exporter.ExporterBase{T}.DataSource">Daten</see> für den Export.</param>
-        public ExporterBase(T dataSource = null) : base(dataSource)
+        public ExporterBase(T dataSource = null, bool openInViewer = true) : base(dataSource, openInViewer)
         {
         }
 
@@ -40,7 +41,23 @@ namespace PDFsharp_MigraDoc.Exporter.Xml
             {
                 serializer.Serialize(writer, DataSource);
             }
+
             FileNames.Add(fullFilename);
+
+            if (OpenInViewer) { OpenFilesInViewer(new string[] { fullFilename }); }
+        }
+
+        protected override void OpenFilesInViewer(string[] fileNames = null)
+        {
+            if (null == fileNames || fileNames.Length == 0)
+            {
+                fileNames = FileNames.ToArray();
+            }
+
+            foreach (string filename in fileNames)
+            {
+                Process.Start(filename);
+            }
         }
     }
 }

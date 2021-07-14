@@ -16,9 +16,10 @@ namespace PDFsharp_MigraDoc.Exporter
         /// Erzeugt ein neues <see cref="ExporterBase{T}"/>
         /// </summary>
         /// <param name="dataSource">Die Datenquelle vom Typ <typeparamref name="T"/> für den Export.</param>
-        protected ExporterBase(T dataSource = null)
+        protected ExporterBase(T dataSource = null, bool openInViewer = true)
         {
             DataSource = dataSource;
+            OpenInViewer = openInViewer;
         }
 
         /// <summary>
@@ -26,6 +27,17 @@ namespace PDFsharp_MigraDoc.Exporter
         /// Die Datenquelle ist immer vom Typ <typeparamref name="T"/>.
         /// </summary>
         public T DataSource { get; set; }
+
+        /// <summary>
+        /// Legt fest oder gibt zurück, ob die erzeugte(n) Datei(en) angezeigt werden sollen
+        /// </summary>
+        public bool OpenInViewer { get; set; }
+
+        /// <summary>
+        /// Konkrete Ableitungen müssen diese Methode implementieren, damit erzeugte Dokumente (Dateien) 
+        /// angezeigt werden, wenn <see cref="OpenInViewer"/> <see cref="true"/> ist.
+        /// </summary>
+        protected abstract void OpenFilesInViewer(string[] fileNames = null);
 
         /// <summary>
         /// Jede konkrete Ableitung von <see cref="ExporterBase{T}"/> muss diese Methode implementieren.
@@ -41,8 +53,8 @@ namespace PDFsharp_MigraDoc.Exporter
         /// <summary>
         /// Das Basisverzeichnis für die Speicherung der <see cref="FileNames">Exportdateien</see>.
         /// </summary>
-        public static string FileRoot { get => Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), 
-            Assembly.GetExecutingAssembly().GetName().Name); }
+        public static string FileRoot => Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            Assembly.GetExecutingAssembly().GetName().Name);
     }
 }

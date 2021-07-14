@@ -12,7 +12,7 @@
         <CollectionViewSource x:Key="peopleViewSource" Source="{Binding SerialLetterVM.People}"/>
         <CollectionViewSource x:Key="anredenViewSource" Source="{Binding SerialLetterVM.Anreden}"/>
         <CollectionViewSource x:Key="grussformelnViewSource" Source="{Binding SerialLetterVM.Grussformeln}"/>
-        <CollectionViewSource x:Key="recipientViewSource" Source="{Binding SerialLetterVM.SerialLetter.Recipients}"/>
+        <CollectionViewSource x:Key="recipientViewSource" Source="{Binding SerialLetterVM.Recipients}"/>
     </Window.Resources>
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">

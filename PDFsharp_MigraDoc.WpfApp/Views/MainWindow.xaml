@@ -13,7 +13,7 @@
     </Window.DataContext>
     <Window.Resources>
         <CollectionViewSource x:Key="peopleViewSource" Source="{Binding SerialLetterVM.People}"/>
-        <CollectionViewSource x:Key="recipientViewSource" Source="{Binding SerialLetterVM.SerialLetter.Recipients}"/>
+        <CollectionViewSource x:Key="recipientViewSource" Source="{Binding SerialLetterVM.Recipients}"/>
     </Window.Resources>
     <xctk:BusyIndicator IsBusy="{Binding IsBusy}">
         <DockPanel LastChildFill="True">
@@ -71,14 +71,17 @@
                     <Label Content="Status"/>
                 </StatusBarItem>
             </StatusBar>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
-                <Button Content="Word-Dokumente erzeugen" Command="{Binding CreateWordDocumentsCommand}"/>
-                <Button Content="MigraDoc/PDFsharp-Dokumente erzeugen" Command="{Binding CreateMigraDocDocumentsCommand}"/>
-                <Button Content="Xml erzeugen" Command="{Binding CreateXmlCommand}"/>
-                <Button Content="Beenden" Command="{Binding CloseWindowCommand}" 
+            <Grid DockPanel.Dock="Bottom">
+                <CheckBox Content="Dateien öffnen" VerticalAlignment="Center" IsChecked="{Binding OpenFilesInViewer}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="Word-Dokumente erzeugen" Command="{Binding CreateWordDocumentsCommand}"/>
+                    <Button Content="MigraDoc/PDFsharp-Dokumente erzeugen" Command="{Binding CreateMigraDocDocumentsCommand}"/>
+                    <Button Content="Xml erzeugen" Command="{Binding CreateXmlCommand}"/>
+                    <Button Content="Beenden" Command="{Binding CloseWindowCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
-            </StackPanel>
-            <TextBox x:Name="textTextBox" Text="{Binding SerialLetter.Text}" DockPanel.Dock="Bottom"/>
+                </StackPanel>
+            </Grid>
+            <TextBox x:Name="textTextBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Text="{Binding SerialLetterVM.SerialLetter.Text}" DockPanel.Dock="Bottom" AcceptsReturn="True"/>
         </DockPanel>
     </xctk:BusyIndicator>
 </Window>
