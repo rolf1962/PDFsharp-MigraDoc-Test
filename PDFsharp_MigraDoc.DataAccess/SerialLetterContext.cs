@@ -81,9 +81,9 @@ namespace PDFsharp_MigraDoc.DataAccess
                 "einfach die Daten in eine XML-Datei speichern.";
 
             SerialLetter.Sender = manfred;
-            SerialLetter.Recipients.Add(klaus);
             SerialLetter.Recipients.Add(gabriele);
-            SerialLetter.Recipients.Add(ilse);
+            //SerialLetter.Recipients.Add(klaus);
+            //SerialLetter.Recipients.Add(ilse);
         }
 
         /// <summary>

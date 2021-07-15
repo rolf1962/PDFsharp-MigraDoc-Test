@@ -55,44 +55,68 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
 
             string filename = Path.Combine(saveDirectory, DataSource.GetType().Name + DateTime.Now.ToString("yyyyMMddhhmmssffff") + ".pdf");
 
-            // ------------------------------
-            // Dokument vollständig neu erzeugen
-            // ------------------------------
-
             // Create a MigraDoc document
             Document document = CreateDocument();
 
             // Add a section to the document
+            // ------------------------------
             Section section = document.AddSection();
             section.PageSetup = document.DefaultPageSetup.Clone();
             section.PageSetup.PageFormat = PageFormat.A4;
             float sectionWidth = section.PageSetup.PageWidth - section.PageSetup.LeftMargin - section.PageSetup.RightMargin;
+            // ------------------------------
 
             {
-                Paragraph paragraph = section.AddParagraph($"Viersen, {DateTime.Now.ToShortDateString()}");
-                paragraph.Format.Alignment = ParagraphAlignment.Right;
+                // Add the footer with page numbering
+                Paragraph paragraph = new Paragraph();
+                paragraph.Format.AddTabStop(sectionWidth, TabAlignment.Right);
+                paragraph.AddTab();
+                paragraph.AddText("Seite ");
+                paragraph.AddPageField();
+                paragraph.AddText(" von ");
+                paragraph.AddNumPagesField();
+                section.Footers.Primary.Add(paragraph);
+                section.Footers.EvenPage.Add(paragraph.Clone());
             }
             {
+                // Headline with senders name, place and date
+                Paragraph paragraph = section.AddParagraph(DataSource.AbsenderName);
+                paragraph.Format.AddTabStop(sectionWidth, TabAlignment.Right);
+                paragraph.AddTab();
+                paragraph.AddText($"{DataSource.AbsenderPostleitOrt}, {DateTime.Now.ToShortDateString()}");
+            }
+            {
+                // Complete sender above the recipient
                 Paragraph paragraph = section.AddParagraph($"{DataSource.AbsenderName} - {DataSource.AbsenderPostleitOrt} - {DataSource.AbsenderStrasseHausr}");
                 paragraph.Format.Font.Size = 8;
                 paragraph.Format.Font.Underline = Underline.Single;
                 paragraph.Format.SpaceBefore = Unit.FromPoint(64);
             }
-            section.AddParagraph(DataSource.EmpfaengerName);
-            section.AddParagraph(DataSource.EmpfaengerStrasseHausnr);
-            section.AddParagraph(DataSource.EmpfaengerPostleitzahlOrt);
             {
+                // Recipient
+                section.AddParagraph(DataSource.EmpfaengerName);
+                section.AddParagraph(DataSource.EmpfaengerStrasseHausnr);
+                section.AddParagraph(DataSource.EmpfaengerPostleitzahlOrt);
+            }
+            {
+                // Salutation
                 Paragraph paragraph = section.AddParagraph(DataSource.Anrede);
                 paragraph.Format.SpaceBefore = Unit.FromPoint(36);
                 paragraph.Format.SpaceAfter = Unit.FromPoint(8);
             }
-            section.AddParagraph(DataSource.Text);
             {
+                // The whole text
+                section.AddParagraph(DataSource.Text);
+            }
+            {
+                // Greeting
                 Paragraph paragraph = section.AddParagraph(DataSource.Grussformel);
                 paragraph.Format.SpaceBefore = Unit.FromPoint(24);
                 paragraph.Format.SpaceAfter = Unit.FromPoint(36);
-            }
-            {
+
+                // Signaturefield is above a line over the senders name
+                // Realized as an 1-Cell-Table with visible top border
+                // ----------------------------------------------------
                 float columnWidth = sectionWidth / 3;   // Spaltenbreite 1/3 der Abschnittsbreite
                 Table table = section.AddTable();       // Die Tabelle benötigen wir die Linie unter der Unterschrift/über dem Namen
                 table.AddColumn(columnWidth);
@@ -105,8 +129,9 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
                 cell.Borders.Right.Visible = false;
                 cell.Borders.Bottom.Visible = false;
 
-                Paragraph paragraph = cell.AddParagraph(DataSource.AbsenderName);
+                paragraph = cell.AddParagraph(DataSource.AbsenderName);
                 paragraph.Format.SpaceBefore = Unit.FromPoint(8);
+                // ----------------------------------------------------
             }
             // ------------------------------ Ende Dokument vollständig neu erzeugen
 

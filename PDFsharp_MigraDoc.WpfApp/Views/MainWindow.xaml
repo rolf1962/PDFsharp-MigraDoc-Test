@@ -17,14 +17,13 @@
     </Window.Resources>
     <xctk:BusyIndicator IsBusy="{Binding IsBusy}">
         <DockPanel LastChildFill="True">
-            <Menu DockPanel.Dock="Top" x:Name="mainMenu">
-                <MenuItem x:Name="fileMenuItem" Header="_Datei"/>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Datei"/>
             </Menu>
-            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10" >
                 <Label Content="Absender:" Width="100"/>
-                <ComboBox x:Name="senderComboBox" 
-                      SelectedItem="{Binding SerialLetterVM.SerialLetter.Sender}" 
-                      ItemsSource="{Binding Source={StaticResource peopleViewSource}}">
+                <ComboBox SelectedItem="{Binding SerialLetterVM.SerialLetter.Sender}" 
+                          ItemsSource="{Binding Source={StaticResource peopleViewSource}}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -39,14 +38,13 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
-            <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="0,0,0,10">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Empfänger:" Width="100" HorizontalAlignment="Left"/>
                     <Button Content="Bearbeiten" Command="{Binding OpenRecipientSelectionCommand}" />
                 </StackPanel>
-                <ListView x:Name="empfaengerListView" 
-                      SelectedItem="{Binding SelectedRecipient}"
-                      ItemsSource="{Binding Source={StaticResource recipientViewSource}}">
+                <ListView SelectedItem="{Binding SelectedRecipient}"
+                          ItemsSource="{Binding Source={StaticResource recipientViewSource}}">
                     <ListView.View>
                         <GridView AllowsColumnReorder="False" >
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Name" Width="100" />
@@ -66,12 +64,12 @@
                     </ListView.View>
                 </ListView>
             </StackPanel>
-            <StatusBar DockPanel.Dock="Bottom" x:Name="statusBar">
+            <!--<StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem>
                     <Label Content="Status"/>
                 </StatusBarItem>
-            </StatusBar>
-            <Grid DockPanel.Dock="Bottom">
+            </StatusBar>-->
+            <Grid DockPanel.Dock="Bottom" Margin="0,0,0,10">
                 <CheckBox Content="Dateien öffnen" VerticalAlignment="Center" IsChecked="{Binding OpenFilesInViewer}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                     <Button Content="Word-Dokumente erzeugen" Command="{Binding CreateWordDocumentsCommand}"/>
@@ -81,7 +79,12 @@
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
                 </StackPanel>
             </Grid>
-            <TextBox x:Name="textTextBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Text="{Binding SerialLetterVM.SerialLetter.Text}" DockPanel.Dock="Bottom" AcceptsReturn="True"/>
+            <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,10">
+                <Label Content="Text:" DockPanel.Dock="Top"/>
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" 
+                         VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top"
+                         Text="{Binding SerialLetterVM.SerialLetter.Text}"/>
+            </DockPanel>
         </DockPanel>
     </xctk:BusyIndicator>
 </Window>
