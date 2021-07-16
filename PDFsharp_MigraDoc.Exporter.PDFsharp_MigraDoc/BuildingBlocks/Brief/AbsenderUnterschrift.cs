@@ -6,6 +6,7 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks
     public class AbsenderUnterschrift : BuildingBlockBase<ViewModels.Dokumente.Brief, Table>
     {
         private Unit sectionWidth;
+
         public AbsenderUnterschrift(ViewModels.Dokumente.Brief dataSource, Unit sectionWidth) : base(dataSource)
         {
             this.sectionWidth = sectionWidth;

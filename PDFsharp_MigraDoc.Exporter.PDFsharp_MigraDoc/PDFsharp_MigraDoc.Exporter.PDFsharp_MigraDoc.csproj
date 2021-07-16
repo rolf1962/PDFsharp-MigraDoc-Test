@@ -78,7 +78,7 @@
     <Compile Include="BuildingBlocks\Brief\Anrede.cs" />
     <Compile Include="BuildingBlocks\Brief\Briefkopf.cs" />
     <Compile Include="BuildingBlocks\BuildingBlockBase.cs" />
-    <Compile Include="BuildingBlocks\Brief\Empfaenger.cs" />
+    <Compile Include="BuildingBlocks\Brief\Adressfeld.cs" />
     <Compile Include="BuildingBlocks\Brief\Grussformel.cs" />
     <Compile Include="BuildingBlocks\Dokumente\FusszeilePaginierungRechts.cs" />
     <Compile Include="ExporterBase.cs" />
