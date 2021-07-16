@@ -27,6 +27,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
             RemoveRecipientCommand = new RelayCommand(RemoveRecipientExecute, RemoveRecipientCanExeute);
             CreateWordDocumentsCommand = new RelayCommand(CreateWordDocumentsExecute, CreateWordDocumentsCanExecute);
             CreateMigraDocDocumentsCommand = new RelayCommand(CreateMigraDocDocumentsExecute, CreateMigraDocDocumentsCanExecute);
+            CreateMigraDocDocumentsWithBuildingBlocksCommand = new RelayCommand(CreateMigraDocDocumentsWithBuildingBlocksExecute, CreateMigraDocDocumentsWithBuildingBlocksCanExecute);
             CreateXmlCommand = new RelayCommand(CreateXmlExecute, CreateXmlCanExecute);
             SelectedRecipient = SerialLetterVM.Recipients.Count > 0 ? SerialLetterVM.Recipients[0] : null;
         }
@@ -148,6 +149,57 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
 
         }
         #endregion CreateMigraDocDocumentsCommand
+
+        #region CreateMigraDocDocumentsWithBuildingBlocksCommand
+
+        /// <summary>
+        /// Command zum Start der Serienbrieferzeugung mit PDFsharp-MigraDoc
+        /// </summary>
+        public RelayCommand CreateMigraDocDocumentsWithBuildingBlocksCommand { get; }
+
+        /// <summary>
+        /// Gibt zurück, ob <see cref="CreateMigraDocDocumentsWithBuildingBlocksCommand"/> ausgeführt werden kann.
+        /// </summary>
+        /// <returns><see cref="true"/>, wenn das Command ausgeführt werden kann, sonst false</returns>
+        private bool CreateMigraDocDocumentsWithBuildingBlocksCanExecute()
+        {
+            return SerialLetterVM.Recipients.Count > 0;
+        }
+
+        /// <summary>
+        /// Führt <see cref="CreateMigraDocDocumentsWithBuildingBlocksCommand"/> aus
+        /// </summary>
+        private void CreateMigraDocDocumentsWithBuildingBlocksExecute()
+        {
+            try
+            {
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (sender, doWorkEventArgs) =>
+                {
+                    IsBusy = true;
+
+                    Exporter.PDFsharp_MigraDoc.BriefMitBausteinen briefExporter = new Exporter.PDFsharp_MigraDoc.BriefMitBausteinen(openInViewer: OpenFilesInViewer);
+                    foreach (PDFsharp_MigraDoc.ViewModels.Dokumente.Brief briefViewModel in SerialLetterVM.GetBriefVMs())
+                    {
+                        briefExporter.DataSource = briefViewModel;
+                        briefExporter.DoExport();
+                    }
+                };
+                worker.RunWorkerCompleted += (sender, doWorkEventArgs) =>
+                {
+                    IsBusy = false;
+                };
+
+                worker.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                App.Logger.Error(ex, $"Fehler bei {nameof(CreateMigraDocDocumentsWithBuildingBlocksExecute)}\n{ex.Message}");
+                IsBusy = false;
+            }
+
+        }
+        #endregion CreateMigraDocDocumentsWithBuildingBlocksCommand
 
 
         #region CreateXmlCommand

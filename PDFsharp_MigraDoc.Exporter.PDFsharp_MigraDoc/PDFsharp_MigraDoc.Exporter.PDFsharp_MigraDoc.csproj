@@ -72,8 +72,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BriefMitBookmarks.cs" />
+    <Compile Include="BriefMitBausteinen.cs" />
     <Compile Include="Brief.cs" />
+    <Compile Include="BuildingBlocks\Brief\AbsenderUnterschrift.cs" />
+    <Compile Include="BuildingBlocks\Brief\Anrede.cs" />
+    <Compile Include="BuildingBlocks\Brief\Briefkopf.cs" />
+    <Compile Include="BuildingBlocks\BuildingBlockBase.cs" />
+    <Compile Include="BuildingBlocks\Brief\Empfaenger.cs" />
+    <Compile Include="BuildingBlocks\Brief\Grussformel.cs" />
+    <Compile Include="BuildingBlocks\Dokumente\FusszeilePaginierungRechts.cs" />
     <Compile Include="ExporterBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,5 +98,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

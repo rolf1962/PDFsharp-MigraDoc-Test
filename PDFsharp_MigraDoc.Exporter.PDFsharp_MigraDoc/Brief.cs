@@ -63,13 +63,18 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
             Section section = document.AddSection();
             section.PageSetup = document.DefaultPageSetup.Clone();
             section.PageSetup.PageFormat = PageFormat.A4;
-            float sectionWidth = section.PageSetup.PageWidth - section.PageSetup.LeftMargin - section.PageSetup.RightMargin;
+            Unit sectionWidth = section.PageSetup.PageWidth - section.PageSetup.LeftMargin - section.PageSetup.RightMargin;
             // ------------------------------
 
             {
                 // Add the footer with page numbering
                 Paragraph paragraph = new Paragraph();
                 paragraph.Format.AddTabStop(sectionWidth, TabAlignment.Right);
+                paragraph.Format.Borders.Top.Visible = true;
+                paragraph.Format.Borders.DistanceFromTop = 8;
+                paragraph.Format.Borders.Left.Visible = false;
+                paragraph.Format.Borders.Right.Visible = false;
+                paragraph.Format.Borders.Bottom.Visible = false;
                 paragraph.AddTab();
                 paragraph.AddText("Seite ");
                 paragraph.AddPageField();
@@ -117,7 +122,7 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
                 // Signaturefield is above a line over the senders name
                 // Realized as an 1-Cell-Table with visible top border
                 // ----------------------------------------------------
-                float columnWidth = sectionWidth / 3;   // Spaltenbreite 1/3 der Abschnittsbreite
+                Unit columnWidth = sectionWidth / 3;    // Spaltenbreite 1/3 der Abschnittsbreite
                 Table table = section.AddTable();       // Die Tabelle benötigen wir die Linie unter der Unterschrift/über dem Namen
                 table.AddColumn(columnWidth);
                 table.AddRow();
@@ -150,19 +155,6 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc
             FileNames.Add(filename);
 
             if (OpenInViewer) { OpenFilesInViewer(new string[] { filename }); }
-        }
-
-        protected override void OpenFilesInViewer(string[] fileNames = null)
-        {
-            if (null == fileNames || fileNames.Length == 0)
-            {
-                fileNames = FileNames.ToArray();
-            }
-
-            foreach (string filename in fileNames)
-            {
-                Process.Start(filename);
-            }
         }
     }
 }
