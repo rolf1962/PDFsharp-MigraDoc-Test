@@ -6,5 +6,6 @@
     public struct TemplateFileNames
     {
         public const string Brief = "Brief.dotx";
+        public const string Blockkatalog = "Blockkatalog.dotx";
     }
 }

@@ -34,6 +34,11 @@ namespace PDFsharp_MigraDoc.Exporter
         public bool OpenInViewer { get; set; }
 
         /// <summary>
+        /// Datum und Uhrzeit der letzten Ausführung
+        /// </summary>
+        public DateTime ExecutionTime { get; } = DateTime.Now;
+
+        /// <summary>
         /// Konkrete Ableitungen müssen diese Methode implementieren, damit erzeugte Dokumente (Dateien) 
         /// angezeigt werden, wenn <see cref="OpenInViewer"/> <see cref="true"/> ist.
         /// </summary>

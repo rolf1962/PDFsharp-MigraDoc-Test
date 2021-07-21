@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System;
 
 namespace PDFsharp_MigraDoc.Models
 {
@@ -10,6 +11,9 @@ namespace PDFsharp_MigraDoc.Models
     {
         private string _name;
         private string _firstName;
+        private DateTime? _birthdate;
+        private string _birthplace;
+        private string _nationality;
         private string _postCode;
         private string _place;
         private string _street;
@@ -26,6 +30,21 @@ namespace PDFsharp_MigraDoc.Models
         /// Gibt den/die Vornamen zurück oder legt ihn/sie fest
         /// </summary>
         public string FirstName { get => _firstName; set => Set(ref _firstName, value); }
+
+        /// <summary>
+        /// Gibt das Geburtsdatum zurück oder legt es fest
+        /// </summary>
+        public DateTime? Birthdate { get => _birthdate; set => Set(ref _birthdate, value); }
+
+        /// <summary>
+        /// Gibt den Geburtsort zurück oder legt ign fest
+        /// </summary>
+        public string Birthplace { get => _birthplace; set => Set(ref _birthplace, value); }
+
+        /// <summary>
+        /// Gibt die Staatsangehörigkeit zurück oder legt sie fest
+        /// </summary>
+        public string Nationality { get => _nationality; set => Set(ref _nationality, value); }
 
         /// <summary>
         /// Gibt die Postleitzahl zurück oder legt sie fest

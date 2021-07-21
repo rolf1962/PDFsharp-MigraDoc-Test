@@ -56,15 +56,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoTextEntries\ExporterBase.cs" />
+    <Compile Include="AutoTextEntries\Person01.cs" />
     <Compile Include="Brief.cs" />
     <Compile Include="ExporterBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerienbriefProtokoll.cs" />
     <Compile Include="TemplateFileNames.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PDFsharp_MigraDoc.Exporter\PDFsharp_MigraDoc.Exporter.csproj">
       <Project>{11548a94-1ffd-4125-b9f0-c2578874af9f}</Project>
       <Name>PDFsharp_MigraDoc.Exporter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDFsharp_MigraDoc.Models\PDFsharp_MigraDoc.Models.csproj">
+      <Project>{1F727E6F-D85C-4F8A-8E4F-B9337D9181E8}</Project>
+      <Name>PDFsharp_MigraDoc.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\PDFsharp_MigraDoc.ViewModels\PDFsharp_MigraDoc.ViewModels.csproj">
       <Project>{3ab3e320-9d40-490d-8324-6664af20aa9f}</Project>

@@ -11,7 +11,8 @@ namespace PDFsharp_MigraDoc.Exporter.Word
     /// <typeparam name="T">Die (ViewModel-) Typ mit den zu exportierenden Daten</typeparam>
     public abstract class ExporterBase<T> : Exporter.ExporterBase<T>, IDisposable where T : class
     {
-        private bool disposedValue;
+        private Document _documentBlockkatalog;
+        private bool _disposedValue;
         private bool _visible;
 
         /// <summary>
@@ -20,7 +21,12 @@ namespace PDFsharp_MigraDoc.Exporter.Word
         /// <param name="dataSource">Die <see cref="Exporter.ExporterBase{T}.DataSource">Daten</see> für den Export.</param>
         public ExporterBase(T dataSource = null, bool openInViewer = true) : base(dataSource, openInViewer)
         {
+            object templateFileName = GetTemplatePath(TemplateFileNames.Blockkatalog);
+
             Application = new Application();
+            _documentBlockkatalog = Application.Documents.Add(Template: ref templateFileName);
+            Blockkatalog = _documentBlockkatalog.get_AttachedTemplate();
+
             Visible = false;
         }
 
@@ -28,6 +34,8 @@ namespace PDFsharp_MigraDoc.Exporter.Word
         /// Die Instanz von <see cref="Application">MS-Word</see> mit der gearbeitet wird.
         /// </summary>
         protected Application Application { get; set; }
+
+        protected Template Blockkatalog { get; private set; }
 
         /// <summary>
         /// Gibt den vollständigen Dateipfad einer Vorlage zurück
@@ -52,10 +60,25 @@ namespace PDFsharp_MigraDoc.Exporter.Word
             }
         }
 
+
+        protected override void OpenFilesInViewer(string[] fileNames = null)
+        {
+            if (null == fileNames || fileNames.Length == 0)
+            {
+                fileNames = FileNames.ToArray();
+            }
+
+            foreach (string filename in fileNames)
+            {
+                Application.Documents.Open(filename);
+            }
+        }
+
+
         #region Implementierung von IDisposable
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -68,12 +91,17 @@ namespace PDFsharp_MigraDoc.Exporter.Word
                 {
                     if (Marshal.IsComObject(Application))
                     {
+                        object doNotSaveChanges = WdSaveOptions.wdDoNotSaveChanges;
+                        _documentBlockkatalog.Close(SaveChanges: ref doNotSaveChanges);
+                        Marshal.FinalReleaseComObject(_documentBlockkatalog);
+
                         foreach (Document document in Application.Documents)
                         {
                             Marshal.FinalReleaseComObject(document);
                         }
 
                         Application.Visible = true;
+                        
                         if (!OpenInViewer)
                         {
                             object saveChanges = WdSaveOptions.wdPromptToSaveChanges;
@@ -85,7 +113,7 @@ namespace PDFsharp_MigraDoc.Exporter.Word
                     Application = null;
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

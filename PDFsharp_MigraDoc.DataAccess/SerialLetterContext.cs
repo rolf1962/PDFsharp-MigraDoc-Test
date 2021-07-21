@@ -1,4 +1,5 @@
 ﻿using PDFsharp_MigraDoc.Models;
+using System;
 using System.Collections.Generic;
 
 namespace PDFsharp_MigraDoc.DataAccess
@@ -29,6 +30,9 @@ namespace PDFsharp_MigraDoc.DataAccess
             {
                 Name = "Testmann",
                 FirstName = "Klaus",
+                Birthdate = new DateTime(1973, 2, 23),
+                Birthplace = "Testdorf",
+                Nationality = "deutsch",
                 Street = "Teststraße",
                 HouseNumber = "123",
                 PostCode = "0815",
@@ -38,6 +42,9 @@ namespace PDFsharp_MigraDoc.DataAccess
             {
                 Name = "Testmann",
                 FirstName = "Gabriele",
+                Birthdate = new DateTime(1975, 5, 5),
+                Birthplace = "Testhausen",
+                Nationality = "deutsch",
                 Street = "Teststraße",
                 HouseNumber = "123",
                 PostCode = "0815",
@@ -47,6 +54,9 @@ namespace PDFsharp_MigraDoc.DataAccess
             {
                 Name = "Mustermann",
                 FirstName = "Manfred",
+                Birthdate = new DateTime(1985, 8, 12),
+                Birthplace = "Musterstadt",
+                Nationality = "deutsch",
                 Street = "Musterstraße",
                 HouseNumber = "123",
                 PostCode = "4711",
@@ -56,6 +66,9 @@ namespace PDFsharp_MigraDoc.DataAccess
             {
                 Name = "Mustermann",
                 FirstName = "Ilse",
+                Birthdate = new DateTime(1984, 12, 24),
+                Birthplace = "Esbjerg",
+                Nationality = "dänisch",
                 Street = "Musterstraße",
                 HouseNumber = "123",
                 PostCode = "4711",

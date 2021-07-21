@@ -21,6 +21,7 @@ namespace PDFsharp_MigraDoc.Exporter.Word
         /// Datenquelle</see> zugewiesen werden</param>
         public Brief(ViewModels.Dokumente.Brief datasource = null, bool openInViewer = true) : base(datasource, openInViewer)
         {
+            
         }
 
         /// <summary>
@@ -57,19 +58,6 @@ namespace PDFsharp_MigraDoc.Exporter.Word
             FileNames.Add(Convert.ToString(fullFilename));
 
             if (OpenInViewer) { OpenFilesInViewer(new string[] { Convert.ToString(fullFilename) }); }
-        }
-
-        protected override void OpenFilesInViewer(string[] fileNames = null)
-        {
-            if (null == fileNames || fileNames.Length == 0)
-            {
-                fileNames = FileNames.ToArray();
-            }
-
-            foreach (string filename in fileNames)
-            {
-                Application.Documents.Open(filename);
-            }
         }
 
         /// <summary>
