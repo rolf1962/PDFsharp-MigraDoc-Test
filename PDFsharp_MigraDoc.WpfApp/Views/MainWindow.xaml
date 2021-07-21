@@ -23,7 +23,8 @@
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10" >
                 <Label Content="Absender:" Width="100"/>
                 <ComboBox SelectedItem="{Binding SerialLetterVM.SerialLetter.Sender}" 
-                          ItemsSource="{Binding Source={StaticResource peopleViewSource}}">
+                          ItemsSource="{Binding Source={StaticResource peopleViewSource}}"
+                          ToolTip="Den Absender auswählen">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -40,8 +41,10 @@
             </StackPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="0,0,0,10">
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Empfänger:" Width="100" HorizontalAlignment="Left"/>
-                    <Button Content="Bearbeiten" Command="{Binding OpenRecipientSelectionCommand}" />
+                    <Label Content="Empfänger:" Width="100" HorizontalAlignment="Left"
+                           ToolTip="Auf 'Bearbeiten' klicken, um die Empfängerliste zu bearbeiten"/>
+                    <Button Content="Bearbeiten" Command="{Binding OpenRecipientSelectionCommand}" 
+                            ToolTip="Empfängerliste bearbeiten"/>
                 </StackPanel>
                 <ListView SelectedItem="{Binding SelectedRecipient}"
                           ItemsSource="{Binding Source={StaticResource recipientViewSource}}">
@@ -55,8 +58,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Button Content="Entfernen" Command="{Binding 
-                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
-                                        Path=DataContext.RemoveRecipientCommand}"/>
+                                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
+                                            Path=DataContext.RemoveRecipientCommand}" ToolTip="Entfernt diesen Empfänger aus der Liste"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -72,12 +75,17 @@
             <Grid DockPanel.Dock="Bottom" Margin="0,0,0,10">
                 <CheckBox Content="Dateien öffnen" VerticalAlignment="Center" IsChecked="{Binding OpenFilesInViewer}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                    <Button Content="Word" Command="{Binding CreateWordDocumentsCommand}"/>
-                    <Button Content="MigraDoc/PDFsharp o. B." Command="{Binding CreateMigraDocDocumentsCommand}"/>
-                    <Button Content="MigraDoc/PDFsharp m. B." Command="{Binding CreateMigraDocDocumentsWithBuildingBlocksCommand}"/>
-                    <Button Content="Xml" Command="{Binding CreateXmlCommand}"/>
+                    <Button Content="Word" Command="{Binding CreateWordDocumentsCommand}"
+                            ToolTip="Dokumente mit MS-Word-InterOp erzeugen"/>
+                    <Button Content="MigraDoc/PDFsharp o. B." Command="{Binding CreateMigraDocDocumentsCommand}"
+                            ToolTip="Dokumente mit PDFsharp und MigraDoc ohne Textbausteine erzeugen"/>
+                    <Button Content="MigraDoc/PDFsharp m. B." Command="{Binding CreateMigraDocDocumentsWithBuildingBlocksCommand}"
+                            ToolTip="Dokumente mit PDFsharp und MigraDoc mit Textbausteinen erzeugen"/>
+                    <Button Content="Xml" Command="{Binding CreateXmlCommand}"
+                            ToolTip="Exportiert die Serienbriefdaten in eine XML-Datei"/>
                     <Button Content="Beenden" Command="{Binding CloseWindowCommand}" 
-                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                            ToolTip="Adieu ;-)"/>
                 </StackPanel>
             </Grid>
             <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,10">
