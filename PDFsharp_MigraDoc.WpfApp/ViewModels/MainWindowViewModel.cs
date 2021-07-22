@@ -83,8 +83,8 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                         }
 
                         using (Exporter.Word.SerienbriefProtokoll protokoll = new Exporter.Word.SerienbriefProtokoll(
-                            executionTime:briefExporter.ExecutionTime, 
-                            datasource: SerialLetterVM, 
+                            executionTime: briefExporter.ExecutionTime,
+                            datasource: SerialLetterVM,
                             openInViewer: OpenFilesInViewer))
                         {
                             protokoll.DoExport();
@@ -192,6 +192,12 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                         briefExporter.DataSource = briefViewModel;
                         briefExporter.DoExport();
                     }
+
+                    Exporter.PDFsharp_MigraDoc.SerienbriefProtokoll protokoll = new Exporter.PDFsharp_MigraDoc.SerienbriefProtokoll(
+                        //executionTime: briefExporter.ExecutionTime,
+                        datasource: SerialLetterVM,
+                        openInViewer: OpenFilesInViewer);
+                    protokoll.DoExport();
                 };
                 worker.RunWorkerCompleted += (sender, doWorkEventArgs) =>
                 {
