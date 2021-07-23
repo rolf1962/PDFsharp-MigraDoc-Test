@@ -1,25 +1,28 @@
 ﻿using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
+using System;
 
 namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks
 {
     public class AbsenderUnterschrift : BuildingBlockBase<ViewModels.Dokumente.Brief, Table>
     {
-        private Unit sectionWidth;
-
         public AbsenderUnterschrift(ViewModels.Dokumente.Brief dataSource, Unit sectionWidth) : base(dataSource)
         {
-            this.sectionWidth = sectionWidth;
-        }
+            if (sectionWidth == Unit.Empty || sectionWidth == Unit.Zero)
+            {
+                throw new ArgumentException(
+                    $"Der Wert von {nameof(sectionWidth)} darf nicht {Unit.Empty} oder {Unit.Zero} sein.", 
+                    nameof(sectionWidth));
+            }
 
-        public override string Beschreibung => "Baustein für einen Standardbrief. Besteht aus dem Absendernamen und einer Linie darüber.";
-        protected override string Name => "Unterschrift/Absendername";
+            SectionWidth = sectionWidth;
+        }
 
         public override Table DocumentObject
         {
             get
             {
-                float columnWidth = sectionWidth / 3;   // Spaltenbreite 1/3 der Abschnittsbreite
+                float columnWidth = SectionWidth / 3;   // Spaltenbreite 1/3 der Abschnittsbreite
                 Table table = new Table();
                 table.AddColumn(columnWidth);
                 table.AddRow();

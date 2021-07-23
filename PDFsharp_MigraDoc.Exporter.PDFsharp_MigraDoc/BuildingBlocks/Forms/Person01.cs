@@ -1,9 +1,4 @@
 ﻿using MigraDoc.DocumentObjectModel.Tables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Forms
 {
@@ -12,11 +7,6 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Forms
         private string _ueberschrift;
 
         public Person01(Models.Person person) : base(person) { }
-
-        protected override string Name => "Personendaten 1";
-
-        public override string Beschreibung => "Baustein zur Ausgabe von Personendaten (Überschrift, Name, " +
-            "Vorname, Geburtsdatum, Geburtsort, Staatsangehörigkeit, Straße, Hausnr., Postleitzahl, Ort)";
 
         public string Ueberschrift { get => _ueberschrift; set => _ueberschrift = value; }
 

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DO&gt;">
+    <Position X="12" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\BuildingBlockBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DS, DO&gt;">
+    <Position X="11" Y="2.5" Width="2" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DO&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="12.875" Y="1.603" />
+        <Point X="12.875" Y="2.125" />
+        <Point X="12" Y="2.125" />
+        <Point X="12" Y="2.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>BuildingBlocks\BuildingBlockBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.ExporterBase&lt;T&gt;">
+    <Position X="2.75" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExporterBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.ExporterBase&lt;T&gt;">
+    <Position X="3" Y="0.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.Brief">
+    <Position X="1.25" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.ExporterBase&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.438" Y="5.117" />
+        <Point X="3.438" Y="5.308" />
+        <Point X="2.062" Y="5.308" />
+        <Point X="2.062" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Brief.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BriefMitBausteinen">
+    <Position X="3" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.ExporterBase&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.938" Y="5.117" />
+        <Point X="3.938" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>BriefMitBausteinen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.SerienbriefProtokoll">
+    <Position X="5" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.ExporterBase&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="5.117" />
+        <Point X="4.5" Y="5.308" />
+        <Point X="6" Y="5.308" />
+        <Point X="6" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>SerienbriefProtokoll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Forms.FusszeilePaginierungRechts">
+    <Position X="13.25" Y="2.5" Width="2.25" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DO&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="13.625" Y="1.603" />
+        <Point X="13.625" Y="2.125" />
+        <Point X="14.375" Y="2.125" />
+        <Point X="14.375" Y="2.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\Forms\FusszeilePaginierungRechts.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.AbsenderUnterschrift">
+    <Position X="7.5" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DS, DO&gt;" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="11.3" Y="4.376" />
+        <Point X="11.3" Y="5.094" />
+        <Point X="8.375" Y="5.094" />
+        <Point X="8.375" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\Brief\AbsenderUnterschrift.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Adressfeld">
+    <Position X="9.5" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DS, DO&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.65" Y="4.376" />
+        <Point X="11.65" Y="5.25" />
+        <Point X="10.312" Y="5.25" />
+        <Point X="10.312" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\Brief\Adressfeld.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Anrede">
+    <Position X="11.5" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DS, DO&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="4.377" />
+        <Point X="12" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\Brief\Anrede.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Briefkopf">
+    <Position X="13.5" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DS, DO&gt;" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="12.25" Y="4.376" />
+        <Point X="12.25" Y="5.302" />
+        <Point X="14.375" Y="5.302" />
+        <Point X="14.375" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\Brief\Briefkopf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Grussformel">
+    <Position X="15.5" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DS, DO&gt;" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.5" Y="4.376" />
+        <Point X="12.5" Y="5.166" />
+        <Point X="16.312" Y="5.166" />
+        <Point X="16.312" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\Brief\Grussformel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Forms.Person01">
+    <Position X="17.5" Y="5.5" Width="1.75" />
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.BuildingBlockBase&lt;DS, DO&gt;" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="12.75" Y="4.376" />
+        <Point X="12.75" Y="5.041" />
+        <Point X="18.375" Y="5.041" />
+        <Point X="18.375" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAACAAAAAAAEAAAAAA=</HashCode>
+      <FileName>BuildingBlocks\Forms\Person01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

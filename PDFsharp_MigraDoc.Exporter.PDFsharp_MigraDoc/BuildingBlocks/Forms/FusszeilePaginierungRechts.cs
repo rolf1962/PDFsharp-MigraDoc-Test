@@ -1,21 +1,10 @@
 ﻿using MigraDoc.DocumentObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks.Forms
 {
     public class FusszeilePaginierungRechts : BuildingBlockBase<Paragraph>
     {
-        public FusszeilePaginierungRechts() 
-        {
-        }
-
-        protected override string Name => "Paginierung rechts";
-
-        public override string Beschreibung => "Baustein für einen Standardbrief. Besteht aus rechts ausgerichteter Paginierung \"Seite n / n \".";
+        public FusszeilePaginierungRechts() { }
 
         public override Paragraph DocumentObject 
         {

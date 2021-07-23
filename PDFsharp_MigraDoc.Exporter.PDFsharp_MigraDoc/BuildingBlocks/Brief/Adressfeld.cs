@@ -1,33 +1,29 @@
 ﻿using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks
 {
     public class Adressfeld : BuildingBlockBase<ViewModels.Dokumente.Brief, Table>
     {
-        private Unit sectionWidth;
-
         public Adressfeld(ViewModels.Dokumente.Brief dataSource, Unit sectionWidth) : base(dataSource)
         {
-            this.sectionWidth = sectionWidth;
+            if (sectionWidth == Unit.Empty || sectionWidth == Unit.Zero)
+            {
+                throw new ArgumentException(
+                    $"Der Wert von {nameof(sectionWidth)} darf nicht {Unit.Empty} oder {Unit.Zero} sein.",
+                    nameof(sectionWidth));
+            }
+
+            SectionWidth = sectionWidth;
         }
-
-        public override string Beschreibung => throw new NotImplementedException();
-
-        protected override string Name => throw new NotImplementedException();
 
         public override Table DocumentObject
         {
             get
             {
                 Table table = new Table();
-                table.AddColumn(sectionWidth);
+                table.AddColumn(SectionWidth);
                 table.AddRow();
 
                 Cell cell = table[0, 0];

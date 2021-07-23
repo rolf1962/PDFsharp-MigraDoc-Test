@@ -5,9 +5,6 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks
 {
     public abstract class BuildingBlockBase<DO> where DO : DocumentObject
     {
-        protected abstract string Name { get; }
-        public abstract string Beschreibung { get; }
-
         public abstract DO DocumentObject { get; }
     }
 
@@ -19,5 +16,7 @@ namespace PDFsharp_MigraDoc.Exporter.PDFsharp_MigraDoc.BuildingBlocks
         }
 
         public DS DataSource { get; }
+
+        public Unit SectionWidth { get; set; } = Unit.Empty;
     }
 }
