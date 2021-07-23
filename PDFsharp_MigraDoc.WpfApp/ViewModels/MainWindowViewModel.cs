@@ -232,7 +232,7 @@ namespace PDFsharp_MigraDoc.WpfApp.ViewModels
                 worker.DoWork += (sender, doWorkEventArgs) =>
                 {
                     IsBusy = true;
-                    Exporter.Xml.ExporterBase<SerialLetter> exporter = new Exporter.Xml.ExporterBase<SerialLetter>(
+                    Exporter.Xml.XmlExporter<SerialLetter> exporter = new Exporter.Xml.XmlExporter<SerialLetter>(
                         dataSource: SerialLetterVM.SerialLetter, openInViewer: OpenFilesInViewer);
                     exporter.DoExport();
                 };

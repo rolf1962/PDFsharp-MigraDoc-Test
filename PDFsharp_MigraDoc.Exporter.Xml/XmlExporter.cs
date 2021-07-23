@@ -12,13 +12,13 @@ namespace PDFsharp_MigraDoc.Exporter.Xml
     /// Für einfache Exporte der <see cref="Exporter.ExporterBase{T}.DataSource"/> reicht die Ausführung von <see cref="DoExport"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ExporterBase<T> : Exporter.ExporterBase<T> where T : class
+    public class XmlExporter<T> : Exporter.ExporterBase<T> where T : class
     {
         /// <summary>
         /// Erzeugt einen neuen Xml-Exporter
         /// </summary>
         /// <param name="dataSource">Die <see cref="Exporter.ExporterBase{T}.DataSource">Daten</see> für den Export.</param>
-        public ExporterBase(T dataSource = null, bool openInViewer = true) : base(dataSource, openInViewer)
+        public XmlExporter(T dataSource = null, bool openInViewer = true) : base(dataSource, openInViewer)
         {
         }
 

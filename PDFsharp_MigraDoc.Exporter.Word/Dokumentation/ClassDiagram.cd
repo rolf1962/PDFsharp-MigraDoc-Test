@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PDFsharp_MigraDoc.Exporter.Word.ExporterBase&lt;T&gt;">
+    <Position X="3" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="PDFsharp_MigraDoc.Exporter.ExporterBase&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="2.25" Y="2.062" />
+        <Point X="3" Y="2.062" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAADAAQAAAQAMAAAAAAAABAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>ExporterBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.ExporterBase&lt;T&gt;">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.Word.Brief">
+    <Position X="2.5" Y="4.25" Width="1.5" />
+    <NestedTypes>
+      <Class Name="PDFsharp_MigraDoc.Exporter.Word.Brief.FormFieldNames" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Brief.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Brief.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PDFsharp_MigraDoc.Exporter.Word.SerienbriefProtokoll">
+    <Position X="4.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>SerienbriefProtokoll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
